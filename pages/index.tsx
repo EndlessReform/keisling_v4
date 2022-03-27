@@ -1,86 +1,292 @@
+import { HTMLProps, useEffect } from 'react'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
-const Home: NextPage = () => {
+// Components
+import {
+  getSortedPostsData,
+  ReviewMetadata,
+  PostMetadata,
+} from '../lib/get_posts'
+import { get_links, LinkMetadata } from '../lib/get_links'
+import Container from '../components/container/container'
+import Layout from '../components/layout/layout'
+import ButtonLink from '../components/ButtonLink/button_link'
+
+// Assets
+import ArrowRight from '../public/icons/arrow-right.svg'
+import Book from '../public/images/book.svg'
+import Calendar from '../public/icons/calendar.svg'
+import LocationIcon from '../public/icons/location.svg'
+import Orbit from '../public/images/orbit.svg'
+import LinkCenter from '../public/images/center.svg'
+import LinkArrows from '../public/images/arrows.svg'
+import Sheets from '../public/images/sheets.svg'
+import Stars from '../components/stars/stars'
+
+const Hero: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
+    <div className="flex flex-col items-center w-full sm:flex-row ">
+      <div className="flex flex-col items-center sm:mr-auto sm:inline">
+        <h1 className="text-5xl font-medium tracking-tight text-blue">
+          Jacob Keisling
         </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className="items-center hidden mt-3 text-gray sm:flex">
+          <LocationIcon className="mr-3" />
+          <h4 className="text-2xl font-medium tracking-tight">
+            Student, University of Chicago
+          </h4>
         </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+      </div>
+      <Image width="128px" height="128px" src="/images/me.png" />
     </div>
   )
 }
 
+// Yes, I know, you could also do this with classes instead of components.
+// But it's my circus and my monkeys...
+const FeatureContainer = (props: HTMLProps<HTMLDivElement>) => (
+  <div className="grid gap-6 mb-20 md:grid-cols-2" {...props} />
+)
+
+const FTImageContainer = (props: HTMLProps<HTMLDivElement>) => (
+  <div
+    className="flex min-h-[20rem] min-w-[20rem] items-center justify-around rounded-2xl bg-pink-light"
+    {...props}
+  />
+)
+
+const ReviewContainer: React.FC<
+  { reviews: ReviewMetadata[] } & HTMLProps<HTMLDivElement>
+> = ({ reviews, ...rest }) => (
+  <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
+    {reviews
+      ? reviews.slice(0, 3).map((review: ReviewMetadata, idx: number) => (
+          <div
+            key={idx}
+            className="flex px-2 py-3 border-b-2 border-pink-light"
+          >
+            <ArrowRight className="mt-[5px] mr-1 h-4 w-4 text-red" />
+            <div>
+              <h4 className="text-lg text-red hover:underline hover:underline-offset-4">
+                <Link href={`/reading/${review.id.split('.')[0]}`}>
+                  <a>{review.title}</a>
+                </Link>
+              </h4>
+              <p className="text-sm text-fg">{review.author}</p>
+              <div className="flex items-center mt-3 font-mono text-gray">
+                <Stars n={review.stars} />
+                <span className="ml-2 text-xs">
+                  {' | '}
+                  {review.written}
+                </span>
+              </div>
+            </div>
+          </div>
+        ))
+      : null}
+    <p className="my-1 mx-7 text-gray">
+      &amp; {reviews ? Math.max(0, reviews.length - 3) : 0} more
+    </p>
+  </div>
+)
+
+const PostContainer: React.FC<
+  { posts: PostMetadata[] } & HTMLProps<HTMLDivElement>
+> = ({ posts, ...rest }) => {
+  return (
+    <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
+      {posts
+        ? posts.slice(0, 3).map((post: PostMetadata, idx: number) => (
+            <div
+              key={idx}
+              className="flex px-2 py-3 border-b-2 border-pink-light"
+            >
+              <div className="m-3">
+                <h4 className="text-lg text-green hover:underline hover:underline-offset-4">
+                  <Link href={`/writing/${post.id.split('.')[0]}`}>
+                    <a>{post.title}</a>
+                  </Link>
+                </h4>
+                <p className="text-sm text-gray">{post.summary}</p>
+                <div className="flex items-center mt-3 font-mono text-gray">
+                  <span className="flex items-center text-xs ">
+                    <Calendar className="w-3 h-3 mr-2" /> {post.written}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))
+        : null}
+      <p className="mx-5 my-1 text-gray">
+        &amp; {posts ? Math.max(0, posts.length - 3) : 0} more
+      </p>
+    </div>
+  )
+}
+
+const LinksContainer: React.FC<
+  { linkObj: object } & HTMLProps<HTMLDivElement>
+> = ({ linkObj, ...rest }) => {
+  let links = Object.values(linkObj).flat()
+  return (
+    <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
+      {links
+        ? links.map((link: any, idx: number) => (
+            <div key={idx} className="flex p-2 border-b-2 border-pink-light">
+              <p className="mt-1 text-sm text-purple">🡪</p>
+              <div className="ml-2">
+                <h4 className="text-lg text-purple hover:underline hover:underline-offset-4">
+                  <a href={link.url}>{link.name}</a>
+                </h4>
+                {link.summary && (
+                  <p className="text-sm text-gray">{link.summary}</p>
+                )}
+              </div>
+            </div>
+          ))
+        : null}
+      <p className="mx-8 my-1 text-gray">
+        &amp; {links ? Math.max(0, links.length - 4) : 0} more
+      </p>
+    </div>
+  )
+}
+
+const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
+  return (
+    <Layout>
+      <Container>
+        <Head>
+          <title>Jacob Keisling</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main className="w-full">
+          <Hero />
+          <FeatureContainer>
+            <div className="border-t-2 border-pink-light">
+              <Link href="/about">
+                <h2 className="my-6 text-3xl font-medium tracking-tight text-blue">
+                  <a>About Me</a>
+                </h2>
+              </Link>
+              <p className="mb-6 text-gray">
+                <span className="font-medium text-fg">
+                  This is the website of Gwern Branwen.
+                </span>{' '}
+                I write about psychology, statistics, and technology. I am best
+                known for work on the darknet markets & Bitcoin⁠, blinded
+                self-experiments⁠, dual n-back & spaced repetition⁠, and anime
+                neural networks⁠.
+              </p>
+              <div className="flex">
+                <ButtonLink
+                  to="/about/resume"
+                  display_name="Resume"
+                  className="bg-blue text-bg"
+                />
+                <ButtonLink
+                  to="/about/me"
+                  display_name="About Me"
+                  className="bg-pink-light text-blue"
+                />
+              </div>
+            </div>
+            <FTImageContainer>
+              <Orbit />
+            </FTImageContainer>
+          </FeatureContainer>
+          <FeatureContainer>
+            <div className="border-t-2 border-pink-light">
+              <h2 className="my-6 text-3xl font-medium tracking-tight text-red">
+                Reading
+              </h2>
+              <ReviewContainer reviews={props.reviews} />
+              <div className="flex">
+                <ButtonLink
+                  to="/reading"
+                  display_name="All books"
+                  className="bg-red text-bg"
+                />
+              </div>
+            </div>
+            <FTImageContainer>
+              <Sheets />
+            </FTImageContainer>
+          </FeatureContainer>
+          <FeatureContainer>
+            <div className="border-t-2 border-pink-light">
+              <h2 className="my-6 text-3xl font-medium tracking-tight text-green">
+                Writing
+              </h2>
+              <PostContainer posts={props.posts} />
+              <div className="flex">
+                <ButtonLink
+                  to="/writing"
+                  display_name="All posts"
+                  className="bg-green text-bg"
+                />
+              </div>
+            </div>
+            <FTImageContainer>
+              <Book />
+            </FTImageContainer>
+          </FeatureContainer>
+          <FeatureContainer>
+            <div className="border-t-2 border-pink-light">
+              <h2 className="my-6 text-3xl font-medium tracking-tight text-purple">
+                Links
+              </h2>
+              <p className="mb-6 text-gray">
+                The best content I could find on the internet
+              </p>
+              <LinksContainer linkObj={props.links} />
+              <div className="flex">
+                <ButtonLink
+                  to="/links"
+                  display_name="All links"
+                  className="bg-purple text-bg"
+                />
+              </div>
+            </div>
+            <div className="flex min-h-[20rem] min-w-[20rem] items-center justify-around overflow-hidden rounded-2xl bg-pink-light">
+              <motion.div
+                animate={{
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                }}
+              >
+                <LinkArrows className="m-auto" />
+              </motion.div>
+              <div className="absolute z-20 flex flex-col items-center w-full mx-auto">
+                <LinkCenter className="w-20 h-20" />
+              </div>
+            </div>
+          </FeatureContainer>
+        </main>
+      </Container>
+    </Layout>
+  )
+}
+
 export default Home
+
+export const getStaticProps: GetStaticProps = async () => {
+  let reviews = getSortedPostsData('reading')
+  let posts = getSortedPostsData('writing')
+  let links = get_links()
+  return {
+    props: {
+      reviews,
+      posts,
+      links,
+    },
+  }
+}

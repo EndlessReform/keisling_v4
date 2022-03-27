@@ -1,0 +1,17 @@
+blogs:
+  - name: 'Patrick Collison'
+    url: 'https://patrickcollison.com/'
+  - name: 'Alexey Guzey'
+    url: 'https://guzey.com/'
+    summary: 'I work on New Science, building new institutions of basic science, starting with the life sciences.'
+  - name: 'Scott Alexander'
+    url: 'https://astralcodexten.substack.com/'
+    summary: 'P(A|B) = [P(A)*P(B|A)]/P(B), all the rest is commentary.'
+    subpages:
+      - name: 'Meditations on Moloch'
+        summary: 'Everything burns'
+        url: 'https://slatestarcodex.com/2014/07/30/meditations-on-moloch/'
+
+japanese:
+  - name: 'NHK EZ'
+    url: 'https://www3.nhk.or.jp/news/easy/'
