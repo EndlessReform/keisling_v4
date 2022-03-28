@@ -26,6 +26,9 @@ export default function BookReview({
           <h1 className="mt-16 mb-4 text-4xl font-medium tracking-tight text-center text-red sm:text-5xl">
             {source.frontmatter.title}
           </h1>
+          <h2 className="mb-4 text-2xl text-gray">
+            {source.frontmatter.author}
+          </h2>
           <Stars n={source.frontmatter.stars} className="mb-8 text-xl" />
         </div>
         <div className="block pt-3 mb-12 text-sm border-y border-pink-light sm:flex">
@@ -46,7 +49,7 @@ export default function BookReview({
           <div className="flex items-center mb-3 ml-auto text-gray">
             <CalendarIcon className="w-4 h-4 mr-1" />
             <p>
-              Reviewed:{' '}
+              Finished:{' '}
               <span className="text-fg">{source.frontmatter.written}</span>
             </p>
           </div>

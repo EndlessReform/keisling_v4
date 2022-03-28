@@ -130,7 +130,7 @@ const LinksContainer: React.FC<
   return (
     <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
       {links
-        ? links.map((link: any, idx: number) => (
+        ? links.slice(0, 4).map((link: any, idx: number) => (
             <div
               key={idx}
               className="flex p-2 border-b-2 border-pink-light last-of-type:border-none"
@@ -157,7 +157,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
       <Container>
         <Head>
           <title>Jacob Keisling</title>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/favicon.ico" />
         </Head>
         <main className="w-full">
           <Hero />
@@ -199,6 +199,9 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
               <h2 className="my-6 text-3xl font-medium tracking-tight text-red">
                 Reading
               </h2>
+              <p className="mb-6 text-gray">
+                Brief thoughts on what I've been reading lately
+              </p>
               <ReviewContainer reviews={props.reviews} />
               <div className="flex">
                 <ButtonLink
@@ -240,7 +243,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
                 Links
               </h2>
               <p className="mb-6 text-gray">
-                The best content I could find on the internet
+                Interesting websites you might have missed
               </p>
               <LinksContainer linkObj={props.links} />
               <div className="flex">

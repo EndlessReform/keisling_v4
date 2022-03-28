@@ -8,7 +8,10 @@ import { HTMLProps } from 'react'
 
 const components = {
   h1: (props: HTMLProps<HTMLHeadingElement>) => (
-    <h1 {...props} className="mb-4 text-4xl font-medium tracking-tight" />
+    <h1
+      {...props}
+      className="mt-10 mb-4 text-4xl font-medium tracking-tight first-of-type:mt-0"
+    />
   ),
   h2: (props: HTMLProps<HTMLHeadingElement>) => (
     <h2 {...props} className="mt-6 mb-3 text-3xl font-medium tracking-tight" />
@@ -32,7 +35,9 @@ const components = {
       className="ml-[-6px] list-inside list-[decimal-leading-zero] marker:text-gray"
     />
   ),
-  li: (props: HTMLProps<HTMLLIElement>) => <li {...props} className="pl-2" />,
+  li: (props: HTMLProps<HTMLLIElement>) => (
+    <li {...props} className="pl-2 last-of-type:mb-4" />
+  ),
   strong: (props: HTMLProps<HTMLElement>) => (
     <strong {...props} className="font-medium" />
   ),

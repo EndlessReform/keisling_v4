@@ -42,9 +42,11 @@ export default function LinksPage({ links }) {
     <CategoryContext.Provider value={[currCategory, setCurrCategory]}>
       <LandingLayout
         title="Links"
-        about={`Useful links I've found. Links do NOT imply endorsement!`}
+        about={`A collection of ${
+          Object.values(links).flat().length
+        } interesting links and resources`}
       >
-        <div className="flex gap-2 py-4 border-y border-t-pink-light border-b-fg">
+        <div className="flex flex-wrap gap-2 py-4 border-y border-t-pink-light border-b-fg">
           {categories.map((cname, key) => (
             <Category category={cname} key={key} />
           ))}
@@ -94,6 +96,10 @@ export default function LinksPage({ links }) {
             </motion.div>
           ))}
         </div>
+        <p className="pt-4 font-mono text-xs text-gray">
+          <strong>Disclaimer: </strong>Links do not necessarily imply my
+          endorsement of all contents, and certainly not my employer's.
+        </p>
       </LandingLayout>
     </CategoryContext.Provider>
   )
