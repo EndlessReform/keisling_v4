@@ -1,4 +1,4 @@
-import { HTMLProps, useEffect } from 'react'
+import { HTMLProps } from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -12,7 +12,7 @@ import {
   ReviewMetadata,
   PostMetadata,
 } from '../lib/get_posts'
-import { get_links, LinkMetadata } from '../lib/get_links'
+import { get_links } from '../lib/get_links'
 import Container from '../components/container/container'
 import Layout from '../components/layout/layout'
 import ButtonLink from '../components/ButtonLink/button_link'
@@ -68,7 +68,7 @@ const ReviewContainer: React.FC<
       ? reviews.slice(0, 3).map((review: ReviewMetadata, idx: number) => (
           <div
             key={idx}
-            className="flex px-2 py-3 border-b-2 border-pink-light"
+            className="flex px-2 py-3 border-b-2 border-pink-light last-of-type:border-none"
           >
             <ArrowRight className="mt-[5px] mr-1 h-4 w-4 text-red" />
             <div>
@@ -89,9 +89,6 @@ const ReviewContainer: React.FC<
           </div>
         ))
       : null}
-    <p className="my-1 mx-7 text-gray">
-      &amp; {reviews ? Math.max(0, reviews.length - 3) : 0} more
-    </p>
   </div>
 )
 
@@ -104,7 +101,7 @@ const PostContainer: React.FC<
         ? posts.slice(0, 3).map((post: PostMetadata, idx: number) => (
             <div
               key={idx}
-              className="flex px-2 py-3 border-b-2 border-pink-light"
+              className="flex px-2 py-3 border-b-2 border-pink-light last-of-type:border-none"
             >
               <div className="m-3">
                 <h4 className="text-lg text-green hover:underline hover:underline-offset-4">
@@ -122,9 +119,6 @@ const PostContainer: React.FC<
             </div>
           ))
         : null}
-      <p className="mx-5 my-1 text-gray">
-        &amp; {posts ? Math.max(0, posts.length - 3) : 0} more
-      </p>
     </div>
   )
 }
@@ -137,7 +131,10 @@ const LinksContainer: React.FC<
     <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
       {links
         ? links.map((link: any, idx: number) => (
-            <div key={idx} className="flex p-2 border-b-2 border-pink-light">
+            <div
+              key={idx}
+              className="flex p-2 border-b-2 border-pink-light last-of-type:border-none"
+            >
               <p className="mt-1 text-sm text-purple">🡪</p>
               <div className="ml-2">
                 <h4 className="text-lg text-purple hover:underline hover:underline-offset-4">
@@ -150,9 +147,6 @@ const LinksContainer: React.FC<
             </div>
           ))
         : null}
-      <p className="mx-8 my-1 text-gray">
-        &amp; {links ? Math.max(0, links.length - 4) : 0} more
-      </p>
     </div>
   )
 }
@@ -185,13 +179,13 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
               </p>
               <div className="flex">
                 <ButtonLink
-                  to="/about/resume"
-                  display_name="Resume"
+                  to="/about"
+                  display_name="Learn more"
                   className="bg-blue text-bg"
                 />
                 <ButtonLink
-                  to="/about/me"
-                  display_name="About Me"
+                  to="https://www.linkedin.com/in/jacob-keisling-b474a7174/"
+                  display_name="LinkedIn"
                   className="bg-pink-light text-blue"
                 />
               </div>
@@ -209,7 +203,9 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
               <div className="flex">
                 <ButtonLink
                   to="/reading"
-                  display_name="All books"
+                  display_name={`${
+                    props.reviews ? Math.max(0, props.reviews.length - 3) : 0
+                  } more`}
                   className="bg-red text-bg"
                 />
               </div>
@@ -227,7 +223,9 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
               <div className="flex">
                 <ButtonLink
                   to="/writing"
-                  display_name="All posts"
+                  display_name={`${
+                    props.posts ? Math.max(0, props.posts.length - 3) : 0
+                  } more`}
                   className="bg-green text-bg"
                 />
               </div>
@@ -248,7 +246,14 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
               <div className="flex">
                 <ButtonLink
                   to="/links"
-                  display_name="All links"
+                  display_name={`${
+                    props.links
+                      ? Math.max(
+                          0,
+                          Object.values(props.links).flat().length - 4
+                        )
+                      : 0
+                  } more`}
                   className="bg-purple text-bg"
                 />
               </div>
