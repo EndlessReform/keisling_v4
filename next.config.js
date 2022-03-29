@@ -22,5 +22,6 @@ module.exports = {
     return config
   },
   reactStrictMode: true,
-  pageExtensions: ['ts', 'tsx', 'js', 'jsx']
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  distDir: '.next',
 }
