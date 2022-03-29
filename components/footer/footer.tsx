@@ -6,9 +6,9 @@ import Container from '../container/container'
 const Footer = () => {
   return (
     <Container>
-      <footer className="flex items-center pt-3 pb-16 text-xs border-t border-gray text-gray">
-        <div className="w-6 h-6 mr-3">
-          <Logo className="w-auto h-auto" />
+      <footer className="flex items-center border-t border-gray pt-3 pb-16 text-xs text-gray">
+        <div className="mr-3 h-6 w-6">
+          <Logo className="h-auto w-auto" />
         </div>
         <p>© Jacob Keisling</p>
         <div className="ml-auto">
@@ -19,7 +19,7 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             Powered by{' '}
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+            <Image src="/vercel.svg" alt="Vercel Logo" width="72" height="16" />
           </a>
         </div>
       </footer>

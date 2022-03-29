@@ -5,6 +5,7 @@ import fs from 'fs'
 import path from 'path'
 import yaml from 'js-yaml'
 
+import PageHead from '../../components/page-head/page-head'
 import LandingLayout from '../../components/landing-layout/landing-layout'
 import clsx from 'clsx'
 
@@ -41,6 +42,7 @@ export default function LinksPage({ links }) {
 
   return (
     <CategoryContext.Provider value={[currCategory, setCurrCategory]}>
+      <PageHead title={"Links | Jacob Keisling"} />
       <LandingLayout
         title="Links"
         about={`A collection of ${

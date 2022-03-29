@@ -8,12 +8,14 @@
     src: url('/fonts/basiercircle-regular-webfont.woff2');
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
   }
   @font-face {
     font-family: 'Basier Circle';
     font-style: normal;
     src: url('/fonts/basiercircle-medium-webfont.woff2');
     font-weight: 500;
+    font-display: swap;
   }
   @font-face {
     font-family: 'Basier Circle';
@@ -32,7 +34,7 @@
   @font-face {
     font-family: 'Basier Circle Mono';
     font-style: normal;
-    src: url('/fonts/basiercirclemono-webfont.woff2');
+    src: url('/fonts/basiercirclemono-regular-webfont.woff2');
     font-weight: 400;
     font-display: swap;
   }

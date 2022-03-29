@@ -10,9 +10,9 @@ import ArrowRight from '../../public/icons/arrow-right.svg'
 
 function Review(props: ReviewMetadata) {
   return (
-    <li className="block pb-4 mt-4 border-b border-pink-light sm:flex">
+    <li className="mt-4 block border-b border-pink-light pb-4 sm:flex">
       <span className="ml-[-0.25rem] hidden pt-1 pr-1 text-red sm:inline">
-        <ArrowRight className="w-6 h-6" />
+        <ArrowRight className="h-6 w-6" />
       </span>
       <div>
         <h3 className="text-2xl tracking-tight">
@@ -29,10 +29,10 @@ function Review(props: ReviewMetadata) {
           <span className="text-xs">Read {props.written}</span>
         </div>
       </div>
-      <div className="flex gap-2 mt-3 ml-auto sm:mt-0">
+      <div className="mt-3 ml-auto flex gap-2 sm:mt-0">
         {props.tags.split(',').map((tag: string, idx) => (
           <span key={idx}>
-            <a className="px-2 py-1 font-mono text-xs font-medium uppercase rounded-lg bg-pink-light text-fg hover:text-red">
+            <a className="rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-red">
               {tag}
             </a>
           </span>
@@ -46,7 +46,10 @@ export default function Reading({
   allPostsData,
 }: InferGetStaticPropsType<GetStaticProps>) {
   return (
-    <LandingLayout title="Reading" about="book reviews  or smth">
+    <LandingLayout
+      title="Reading"
+      about="Short notes on books I've read recently"
+    >
       <div className="border-t border-gray text-fg">
         <ul>
           {allPostsData.map((data: ReviewMetadata) => (

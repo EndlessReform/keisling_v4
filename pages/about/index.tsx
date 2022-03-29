@@ -1,12 +1,12 @@
 import fs from 'fs'
 import path from 'path'
-import Head from 'next/head'
 import Image from 'next/image'
 import clsx from 'clsx'
 import { MDXProvider } from '@mdx-js/react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
+import PageHead from '../../components/page-head/page-head'
 import Container from '../../components/container/container'
 import Layout from '../../components/layout/layout'
 import MailIcon from '../../public/icons/mail.svg'
@@ -66,9 +66,7 @@ export default function Me({ source }: AboutProps) {
   return (
     <div className="overflow-hidden">
       <Layout>
-        <Head>
-          <title>About | Jacob Keisling</title>
-        </Head>
+        <PageHead title={'About | Jacob Keisling'} />
         <Container>
           <h1 className="my-6 max-w-3xl text-5xl font-medium tracking-tight text-gray">
             <span className="text-blue">Hi! 👋 I'm Jacob Keisling.</span> I make

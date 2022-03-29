@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import Head from 'next/head'
+import PageHead from '../page-head/page-head'
 import Container from '../../components/container/container'
 import Layout from '../../components/layout/layout'
 import useAccentColor from '../../lib/useAccentColor'
@@ -14,10 +14,7 @@ export default function LandingLayout(props: LLProps) {
   let accent = useAccentColor()
   return (
     <Layout>
-      <Head>
-        <title>{props.title} | Jacob Keisling</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <PageHead title={`${props.title} | Jacob Keisling`} />
       <Container>
         <div>
           <h1

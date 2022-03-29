@@ -12,15 +12,16 @@ import Stars from '../../components/stars/stars'
 // Assets
 import TagIcon from '../../public/icons/tag.svg'
 import CalendarIcon from '../../public/icons/calendar.svg'
+import PageHead from '../../components/page-head/page-head'
 
 export default function BookReview({
   source,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <Head>
-        <title>Review: {source.frontmatter.title}</title>
-      </Head>
+      <PageHead
+        title={`Review: ${source.frontmatter.title} | Jacob Keisling`}
+      />
       <MDXLayout>
         <div className="flex flex-col items-center">
           <h1 className="mt-16 mb-4 text-center text-4xl font-medium tracking-tight text-red sm:text-5xl">

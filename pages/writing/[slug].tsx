@@ -6,48 +6,45 @@ import { MDXRemote } from 'next-mdx-remote'
 import { getPaths } from '../../lib/get_posts'
 
 // Components
-import Head from 'next/head'
 import MDXLayout from '../../components/mdx_layout/mdx_layout'
-import Stars from '../../components/stars/stars'
 
 // Assets
 import TagIcon from '../../public/icons/tag.svg'
 import CalendarIcon from '../../public/icons/calendar.svg'
+import PageHead from '../../components/page-head/page-head'
 
 export default function BookReview({
   source,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <Head>
-        <title>Review: {source.frontmatter.title}</title>
-      </Head>
+      <PageHead title={`${source.frontmatter.title} `} />
       <MDXLayout>
         <div className="flex flex-col items-center">
-          <h1 className="mt-16 text-4xl font-medium tracking-tight text-center text-green sm:text-5xl">
+          <h1 className="mt-16 text-center text-4xl font-medium tracking-tight text-green sm:text-5xl">
             {source.frontmatter.title}
           </h1>
-          <p className="max-w-lg my-8 text-center text-gray">
+          <p className="my-8 max-w-lg text-center text-gray">
             {source.frontmatter.summary}
           </p>
         </div>
-        <div className="block pt-3 mb-12 text-sm border-y border-pink-light sm:flex">
-          <div className="flex items-center mb-2 text-gray">
-            <TagIcon className="w-4 h-4 mr-1" />
+        <div className="mb-12 block border-y border-pink-light pt-3 text-sm sm:flex">
+          <div className="mb-2 flex items-center text-gray">
+            <TagIcon className="mr-1 h-4 w-4" />
             <p>Tagged:</p>
             {source.frontmatter.tags
               .split(',')
               .map((tag: string, idx: number) => (
                 <a
                   key={idx}
-                  className="px-2 py-1 ml-2 font-mono text-xs font-medium uppercase rounded-lg bg-pink-light text-fg hover:text-red"
+                  className="ml-2 rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-red"
                 >
                   {tag}
                 </a>
               ))}
           </div>
-          <div className="flex items-center mb-3 ml-auto text-gray">
-            <CalendarIcon className="w-4 h-4 mr-1" />
+          <div className="mb-3 ml-auto flex items-center text-gray">
+            <CalendarIcon className="mr-1 h-4 w-4" />
             <p>
               Written:{' '}
               <span className="text-fg">{source.frontmatter.written}</span>

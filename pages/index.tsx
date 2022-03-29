@@ -27,6 +27,7 @@ import LinkCenter from '../public/images/center.svg'
 import LinkArrows from '../public/images/arrows.svg'
 import Sheets from '../public/images/sheets.svg'
 import Stars from '../components/stars/stars'
+import PageHead from '../components/page-head/page-head'
 
 const Hero: React.FC = () => {
   return (
@@ -155,10 +156,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
   return (
     <Layout>
       <Container>
-        <Head>
-          <title>Jacob Keisling</title>
-          <link rel="shortcut icon" href="/favicon.ico" />
-        </Head>
+        <PageHead title={'Jacob Keisling'} />
         <main className="w-full">
           <Hero />
           <FeatureContainer>

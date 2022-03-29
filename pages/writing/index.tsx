@@ -10,9 +10,9 @@ import Calendar from '../../public/icons/calendar.svg'
 
 function Post(props: PostMetadata) {
   return (
-    <li className="block pb-4 mt-4 border-b border-pink-light sm:flex">
+    <li className="mt-4 block border-b border-pink-light pb-4 sm:flex">
       <span className="ml-[-0.25rem] hidden pt-1 pr-1 text-green sm:inline">
-        <ArrowRight className="w-6 h-6" />
+        <ArrowRight className="h-6 w-6" />
       </span>
       <div>
         <h3 className="mb-2 text-2xl tracking-tight">
@@ -21,16 +21,16 @@ function Post(props: PostMetadata) {
           </Link>
         </h3>
         <p className="max-w-xl text-sm text-gray">{props.summary}</p>
-        <div className="flex items-center mt-3 font-mono text-gray">
+        <div className="mt-3 flex items-center font-mono text-gray">
           <span className="flex items-center text-xs ">
-            <Calendar className="w-3 h-3 mr-2" /> {props.written}
+            <Calendar className="mr-2 h-3 w-3" /> {props.written}
           </span>
         </div>
       </div>
-      <div className="flex gap-2 mt-3 ml-auto sm:mt-0">
+      <div className="mt-3 ml-auto flex gap-2 sm:mt-0">
         {props.tags.split(',').map((tag: string, idx) => (
           <span key={idx}>
-            <a className="px-2 py-1 font-mono text-xs font-medium uppercase rounded-lg bg-pink-light text-fg hover:text-red">
+            <a className="rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-red">
               {tag}
             </a>
           </span>
@@ -44,7 +44,7 @@ export default function Writing({
   allPostsData,
 }: InferGetStaticPropsType<GetStaticProps>) {
   return (
-    <LandingLayout title="Writing" about="Lol idfk">
+    <LandingLayout title="Writing" about="My thoughts">
       <div className="border-t border-gray text-fg">
         <ul>
           {allPostsData.map((data: PostMetadata) => (
