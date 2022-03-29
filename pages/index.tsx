@@ -70,9 +70,9 @@ const ReviewContainer: React.FC<
             key={idx}
             className="flex border-b-2 border-pink-light px-2 py-3 last-of-type:border-none"
           >
-            <ArrowRight className="mt-[5px] mr-1 h-4 w-4 text-red" />
+            <ArrowRight className="mt-[7px] mr-1 h-4 w-4 text-red" />
             <div>
-              <h4 className="text-lg text-red hover:underline hover:underline-offset-4">
+              <h4 className="text-xl text-red hover:underline hover:underline-offset-4">
                 <Link href={`/reading/${review.id.split('.')[0]}`}>
                   <a>{review.title}</a>
                 </Link>
@@ -101,10 +101,10 @@ const PostContainer: React.FC<
         ? posts.slice(0, 3).map((post: PostMetadata, idx: number) => (
             <div
               key={idx}
-              className="flex border-b-2 border-pink-light px-2 py-3 last-of-type:border-none"
+              className="flex border-b-2 border-pink-light p-2 last-of-type:border-none"
             >
               <div className="m-3">
-                <h4 className="text-lg text-green hover:underline hover:underline-offset-4">
+                <h4 className="text-xl text-green hover:underline hover:underline-offset-4">
                   <Link href={`/writing/${post.id.split('.')[0]}`}>
                     <a>{post.title}</a>
                   </Link>
@@ -135,9 +135,9 @@ const LinksContainer: React.FC<
               key={idx}
               className="flex border-b-2 border-pink-light p-2 last-of-type:border-none"
             >
-              <ArrowRight className="mt-[5px] h-4 w-4 text-purple" />
+              <ArrowRight className="mt-[7px] h-4 w-4 text-purple" />
               <div className="ml-2">
-                <h4 className="text-lg text-purple hover:underline hover:underline-offset-4">
+                <h4 className="text-xl text-purple hover:underline hover:underline-offset-4">
                   <a href={link.url}>{link.name}</a>
                 </h4>
                 {link.summary && (
@@ -164,11 +164,11 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
           <FeatureContainer>
             <div className="border-t-2 border-pink-light">
               <Link href="/about">
-                <h2 className="my-6 text-3xl font-medium tracking-tight text-blue">
+                <h2 className="my-6 text-4xl font-medium tracking-tight text-blue">
                   <a>About</a>
                 </h2>
               </Link>
-              <p className="mb-6 text-gray">
+              <p className="mb-6 text-lg text-gray">
                 <span className="font-medium text-fg">
                   You've found Jacob Keisling's personal website,
                 </span>{' '}
@@ -194,10 +194,10 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
           </FeatureContainer>
           <FeatureContainer>
             <div className="border-t-2 border-pink-light">
-              <h2 className="my-6 text-3xl font-medium tracking-tight text-red">
+              <h2 className="my-6 text-4xl font-medium tracking-tight text-red">
                 Reading
               </h2>
-              <p className="mb-6 text-gray">
+              <p className="mb-6 text-lg text-gray">
                 Brief thoughts on what I've been reading lately
               </p>
               <ReviewContainer reviews={props.reviews} />
@@ -217,7 +217,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
           </FeatureContainer>
           <FeatureContainer>
             <div className="border-t-2 border-pink-light">
-              <h2 className="my-6 text-3xl font-medium tracking-tight text-green">
+              <h2 className="my-6 text-4xl font-medium tracking-tight text-green">
                 Writing
               </h2>
               <PostContainer posts={props.posts} />
@@ -237,10 +237,10 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
           </FeatureContainer>
           <FeatureContainer>
             <div className="border-t-2 border-pink-light">
-              <h2 className="my-6 text-3xl font-medium tracking-tight text-purple">
+              <h2 className="my-6 text-4xl font-medium tracking-tight text-purple">
                 Links
               </h2>
-              <p className="mb-6 text-gray">
+              <p className="mb-6 text-lg text-gray">
                 Interesting websites you might have missed
               </p>
               <LinksContainer linkObj={props.links} />

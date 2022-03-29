@@ -18,7 +18,7 @@ const H3List = (props: HTMLProps<HTMLHeadingElement>) => {
     <h3
       {...props}
       className={clsx(
-        'py-1 text-xl font-medium tracking-tight text-fg',
+        'py-1 text-2xl font-medium tracking-tight text-fg',
         'before:about-list-cntr [counter-increment:list] before:text-blue first:[counter-reset:list_1]'
       )}
     >
@@ -32,7 +32,7 @@ const components = {
     <h1
       {...props}
       className={clsx(
-        'mt-24 border-t-2 border-t-fg py-6 text-3xl font-medium tracking-tight text-fg first-of-type:mt-0',
+        'mt-24 border-t-2 border-t-fg py-6 text-4xl font-medium tracking-tight text-fg first-of-type:mt-0',
         'before:about-sec-cntr [counter-increment:section] before:text-blue first:[counter-reset:section]'
       )}
     />
@@ -41,7 +41,7 @@ const components = {
     <h2
       {...props}
       className={clsx(
-        'mt-12 border-t border-t-pink-light pt-3 pb-6 text-2xl font-medium tracking-tight text-fg',
+        'mt-12 border-t border-t-pink-light pt-3 pb-6 text-3xl font-medium tracking-tight text-fg',
         'before:about-subsec-cntr [counter-increment:subsection] before:text-blue first:[counter-reset:subsection_1]'
       )}
     />
@@ -72,19 +72,21 @@ export default function Me({ source }: AboutProps) {
         <Container>
           <h1 className="my-6 max-w-3xl text-5xl font-medium tracking-tight text-gray">
             <span className="text-blue">Hi! 👋 I'm Jacob Keisling.</span> I make
-            giant eggs for a living.
+            websites, <span className="italic">inter alia</span>.
           </h1>
-          <div className="mt-12 flex items-end gap-12 font-mono text-gray">
-            <Image src="/images/me.png" height="128px" width="128px" />
+          <div className="mt-12 flex flex-wrap items-end gap-x-12 font-mono text-gray">
+            <div className="hidden sm:block">
+              <Image src="/images/me.png" height="128px" width="128px" />
+            </div>
             <a
-              className="pb-2 underline-offset-4 hover:underline"
+              className="flex items-center pb-2 underline-offset-4 hover:underline"
               href="mailto:enquiries@keisling.me"
             >
               <MailIcon className="mr-1 inline" />
               enquiries@keisling.me
             </a>
             <a
-              className="pb-2 underline-offset-4 hover:underline"
+              className="flex items-center pb-2 underline-offset-4 hover:underline"
               href="https://github.com/EndlessReform/"
             >
               <GithubIcon className="mr-1 inline" />

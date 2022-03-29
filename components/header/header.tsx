@@ -63,7 +63,7 @@ const Header = () => {
   const curr_color = useAccentColor()
 
   return (
-    <nav className="fixed z-30 w-full border-b border-bg bg-bg/90 text-sm">
+    <nav className="fixed z-30 w-full border-b border-bg bg-bg/90">
       <div className="flex max-w-screen-lg items-center p-4 sm:px-8 lg:mx-auto">
         <motion.div whileHover={{ rotate: '45deg' }}>
           <Link href="/">
