@@ -30,7 +30,7 @@ function Post(props: PostMetadata) {
       <div className="mt-3 ml-auto flex gap-2 sm:mt-0">
         {props.tags.split(',').map((tag: string, idx) => (
           <span key={idx}>
-            <a className="rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-red">
+            <a className="rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-green">
               {tag}
             </a>
           </span>

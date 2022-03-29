@@ -91,7 +91,7 @@ export default function LinksPage({ links }) {
               <div className="hidden sm:ml-auto sm:inline-block">
                 <a
                   href={l.url}
-                  className="font-mono text-xs text-gray underline-offset-2 hover:underline"
+                  className="font-mono text-xs text-gray underline-offset-2 hover:underline flex items-center pt-1"
                 >
                   <LinkIcon className="inline mr-1" />
                   {l.url}

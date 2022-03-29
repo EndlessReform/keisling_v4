@@ -2,9 +2,10 @@ import Head from 'next/head'
 
 type PageHeadProps = {
   title: string
+  og_description?: string
 }
 
-export default function PageHead({ title }: PageHeadProps) {
+export default function PageHead({ title, og_description }: PageHeadProps) {
   return (
     <Head>
       <title>{title}</title>
@@ -17,6 +18,11 @@ export default function PageHead({ title }: PageHeadProps) {
         name="description"
         content="Jacob Keisling's personal website, for better or worse. I write about front-end development, hardware, progress studies, and East Asian history."
       ></meta>
+      <meta property="og:title" content={title.split('|')[0]} />
+      <meta property="og:type" content="article" />
+      {og_description && (
+        <meta property="og:description" content={og_description} />
+      )}
     </Head>
   )
 }

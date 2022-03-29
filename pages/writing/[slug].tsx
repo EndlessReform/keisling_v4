@@ -37,7 +37,7 @@ export default function BookReview({
               .map((tag: string, idx: number) => (
                 <a
                   key={idx}
-                  className="ml-2 rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-red"
+                  className="ml-2 rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-green"
                 >
                   {tag}
                 </a>

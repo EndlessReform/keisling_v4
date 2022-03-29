@@ -47,7 +47,9 @@ const NavItem = (props: NavItemProps) => {
                 >
                   {item.icon}
                   <Link href={item.to}>
-                    <a className="ml-1 text-gray">{item.display_name}</a>
+                    <a href={item.to} className="ml-1 text-gray">
+                      {item.display_name}
+                    </a>
                   </Link>
                 </li>
               )
@@ -67,7 +69,7 @@ const Header = () => {
       <div className="flex max-w-screen-lg items-center p-4 sm:px-8 lg:mx-auto">
         <motion.div whileHover={{ rotate: '45deg' }}>
           <Link href="/">
-            <a>
+            <a href="/" aria-label="Home">
               <Logo className={clsx('h-12 w-12', curr_color)} />
             </a>
           </Link>

@@ -69,15 +69,20 @@ export default function Me({ source }: AboutProps) {
         <PageHead title={'About | Jacob Keisling'} />
         <Container>
           <h1 className="my-6 max-w-3xl text-5xl font-medium tracking-tight text-gray">
-            <span className="text-blue">Hi! 👋 I'm Jacob Keisling.</span> I make
+            <span className="text-blue">Hi! I'm Jacob Keisling.</span> I make
             websites, <span className="italic">inter alia</span>.
           </h1>
           <div className="mt-12 flex flex-wrap items-end gap-x-12 font-mono text-gray">
-            <div className="hidden sm:block">
-              <Image src="/images/me.png" height="128px" width="128px" />
+            <div className="mb-[-0.5rem] hidden sm:block">
+              <Image
+                src="/images/me.png"
+                alt="That's me, Jacob"
+                height="128px"
+                width="128px"
+              />
             </div>
             <a
-              className="flex items-center pb-2 underline-offset-4 hover:underline"
+              className="mb-2 flex items-center underline-offset-4 hover:underline"
               href="mailto:enquiries@keisling.me"
             >
               <MailIcon className="mr-1 inline" />
