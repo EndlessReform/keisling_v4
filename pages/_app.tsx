@@ -5,7 +5,7 @@ import type { AppProps } from 'next/app'
 // Shortcode components
 import MDLink from '../components/MDLink/MDLink'
 import { HTMLProps } from 'react'
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 
 const components = {
   h1: (props: HTMLProps<HTMLHeadingElement>) => (
@@ -15,13 +15,13 @@ const components = {
     />
   ),
   h2: (props: HTMLProps<HTMLHeadingElement>) => (
-    <h2 {...props} className="mt-6 mb-3 text-3xl font-medium tracking-tight" />
+    <h2 {...props} className="mt-8 mb-3 text-3xl font-medium tracking-tight" />
   ),
   h3: (props: HTMLProps<HTMLHeadingElement>) => (
-    <h3 {...props} className="mt-6 mb-3 text-2xl font-medium" />
+    <h3 {...props} className="mt-8 mb-3 text-2xl font-medium" />
   ),
   p: (props: HTMLProps<HTMLParagraphElement>) => (
-    <p {...props} className="mb-3 tracking-[-.0075em]" />
+    <p {...props} className="mb-6 text-lg tracking-[-.0075em]" />
   ),
   a: (props: HTMLProps<HTMLAnchorElement>) => <MDLink {...props} />,
   ul: (props: HTMLProps<HTMLUListElement>) => (
@@ -38,7 +38,7 @@ const components = {
     />
   ),
   li: (props: HTMLProps<HTMLLIElement>) => (
-    <li {...props} className="last-of-type:mb-4" />
+    <li {...props} className="text-lg last-of-type:mb-4" />
   ),
   strong: (props: HTMLProps<HTMLElement>) => (
     <strong {...props} className="font-medium" />
@@ -54,19 +54,33 @@ const components = {
   ),
   // Fuck this shit
   img: (props: any) => {
-    if (props.href && props.href[0] === '/') {
+    if (props.src && props.src[0] === '/') {
       return (
-        <Image
-          src={props.href}
-          width="auto"
-          height="auto"
-          className="my-6 rounded-2xl"
-        />
+        // Local images default to 4:3 resolution.
+        // This is bad, but I should be using the Image element anyway so who cares
+        <div className="my-6 max-w-2xl">
+          <Image
+            src={props.src}
+            width="4000px"
+            height="3000px"
+            layout="responsive"
+            className="rounded-2xl object-cover"
+          />
+        </div>
       )
     } else {
-      return <img {...props} className="my-6 rounded-2xl" />
+      return <img {...props} className="my-6 max-w-2xl rounded-2xl" />
     }
   },
+  Image: (props: ImageProps) => (
+    <div className="my-12 max-w-2xl">
+      <Image
+        {...props}
+        className="rounded-2xl object-cover"
+        layout="responsive"
+      />
+    </div>
+  ),
 }
 
 function MyApp({ Component, pageProps }: AppProps) {

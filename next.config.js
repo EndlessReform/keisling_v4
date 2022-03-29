@@ -21,6 +21,10 @@ module.exports = {
 
     return config
   },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx'],
   distDir: '.next',

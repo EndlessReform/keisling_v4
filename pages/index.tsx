@@ -1,7 +1,6 @@
 import { HTMLProps } from 'react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -43,7 +42,12 @@ const Hero: React.FC = () => {
           </h4>
         </div>
       </div>
-      <Image width="128px" height="128px" src="/images/me.png" />
+      <Image
+        width="128px"
+        height="128px"
+        src="/images/me.png"
+        alt="Jacob Keisling"
+      />
     </div>
   )
 }
@@ -163,7 +167,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
             <div className="border-t-2 border-pink-light">
               <Link href="/about">
                 <h2 className="my-6 text-4xl font-medium tracking-tight text-blue">
-                  <a>About</a>
+                  <a href="/about">About</a>
                 </h2>
               </Link>
               <p className="mb-6 text-lg text-gray">

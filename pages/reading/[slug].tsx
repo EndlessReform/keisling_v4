@@ -55,7 +55,9 @@ export default function BookReview({
             </p>
           </div>
         </div>
-        <MDXRemote {...source} />
+        <article>
+          <MDXRemote {...source} />
+        </article>
       </MDXLayout>
     </>
   )
