@@ -8,6 +8,7 @@ import yaml from 'js-yaml'
 import LandingLayout from '../../components/landing-layout/landing-layout'
 import clsx from 'clsx'
 
+import ArrowRight from '../../public/icons/arrow-right.svg'
 import LinkIcon from '../../public/icons/link.svg'
 
 const CategoryContext = createContext()
@@ -62,7 +63,7 @@ export default function LinksPage({ links }) {
               transition={{ duration: 0.35 }}
             >
               <div className="flex">
-                <h4 className="mr-2 text-xl text-purple">🡪</h4>
+                <ArrowRight className="mt-1 mr-1 w-5 h-5 text-purple"/>
                 <div>
                   <h4 className="text-xl tracking-tight hover:text-purple">
                     <a href={l.url}>{l.name}</a>
@@ -75,7 +76,8 @@ export default function LinksPage({ links }) {
                   {l.subpages
                     ? l.subpages.map((pg, key) => (
                         <div key={key} className="mt-2 text-sm">
-                          🡪 <a href={pg.url}>{pg.name}</a>
+                          <ArrowRight className="w-3 h-3 mr-1 inline text-gray"/>
+                          <a href={pg.url}>{pg.name}</a>
                           {pg.summary ? (
                             <span className="text-gray">{` - ${pg.summary}`}</span>
                           ) : null}

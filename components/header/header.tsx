@@ -37,8 +37,8 @@ const NavItem = (props: NavItemProps) => {
         {submenuExists ? <Chevron /> : null}
       </div>
       {submenuExists ? (
-        <div className="absolute invisible group-hover:visible ">
-          <ul className="p-2 mt-2 border-2 rounded-lg border-pink-light bg-bg">
+        <div className="invisible absolute group-hover:visible ">
+          <ul className="mt-2 rounded-lg border-2 border-pink-light bg-bg p-2">
             {props.menu_items.map((item, idx) => {
               return (
                 <li
@@ -63,8 +63,8 @@ const Header = () => {
   const curr_color = useAccentColor()
 
   return (
-    <nav className="fixed z-30 w-full text-sm border-b border-bg bg-bg/90">
-      <div className="flex items-center max-w-screen-lg p-4 sm:px-8 lg:mx-auto">
+    <nav className="fixed z-30 w-full border-b border-bg bg-bg/90 text-sm">
+      <div className="flex max-w-screen-lg items-center p-4 sm:px-8 lg:mx-auto">
         <motion.div whileHover={{ rotate: '45deg' }}>
           <Link href="/">
             <a>
@@ -72,24 +72,13 @@ const Header = () => {
             </a>
           </Link>
         </motion.div>
-        <div className="flex items-center gap-6 ml-auto ">
+        <div className="ml-auto flex items-center gap-6 ">
           <NavItem
             to="/about"
             display_name="About"
             color_rule="group-hover:text-blue"
             open={true}
-            menu_items={[
-              {
-                display_name: 'Resume',
-                to: '/about/resume',
-                icon: <DocumentIcon />,
-              },
-              {
-                display_name: 'Personal',
-                to: '/about/personal',
-                icon: <UserIcon />,
-              },
-            ]}
+            menu_items={[]}
           />
           <NavItem
             to="/reading"

@@ -48,13 +48,13 @@ const components = {
   ),
   h3: (props: HTMLProps<HTMLHeadingElement>) => <H3List {...props} />,
   p: (props: HTMLProps<HTMLParagraphElement>) => (
-    <p {...props} className="max-w-2xl mb-4 text-lg tracking-tight text-gray" />
+    <p {...props} className="mb-4 max-w-2xl text-lg tracking-tight text-gray" />
   ),
   strong: (props: HTMLProps<HTMLElement>) => (
     <strong {...props} className="font-medium text-fg" />
   ),
   li: (props: HTMLProps<HTMLLIElement>) => (
-    <li {...props} className="pl-2 mb-1 text-lg tracking-tight text-gray" />
+    <li {...props} className="mb-1 text-lg tracking-tight text-gray" />
   ),
 }
 
@@ -70,24 +70,24 @@ export default function Me({ source }: AboutProps) {
           <title>About | Jacob Keisling</title>
         </Head>
         <Container>
-          <h1 className="max-w-3xl my-6 text-5xl font-medium tracking-tight text-gray">
+          <h1 className="my-6 max-w-3xl text-5xl font-medium tracking-tight text-gray">
             <span className="text-blue">Hi! 👋 I'm Jacob Keisling.</span> I make
             giant eggs for a living.
           </h1>
-          <div className="flex items-end gap-12 mt-12 font-mono text-gray">
+          <div className="mt-12 flex items-end gap-12 font-mono text-gray">
             <Image src="/images/me.png" height="128px" width="128px" />
             <a
               className="pb-2 underline-offset-4 hover:underline"
               href="mailto:enquiries@keisling.me"
             >
-              <MailIcon className="inline mr-1" />
+              <MailIcon className="mr-1 inline" />
               enquiries@keisling.me
             </a>
             <a
               className="pb-2 underline-offset-4 hover:underline"
               href="https://github.com/EndlessReform/"
             >
-              <GithubIcon className="inline mr-1" />
+              <GithubIcon className="mr-1 inline" />
               endlessreform
             </a>
           </div>

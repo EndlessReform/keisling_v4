@@ -23,7 +23,7 @@ export default function BookReview({
       </Head>
       <MDXLayout>
         <div className="flex flex-col items-center">
-          <h1 className="mt-16 mb-4 text-4xl font-medium tracking-tight text-center text-red sm:text-5xl">
+          <h1 className="mt-16 mb-4 text-center text-4xl font-medium tracking-tight text-red sm:text-5xl">
             {source.frontmatter.title}
           </h1>
           <h2 className="mb-4 text-2xl text-gray">
@@ -31,23 +31,23 @@ export default function BookReview({
           </h2>
           <Stars n={source.frontmatter.stars} className="mb-8 text-xl" />
         </div>
-        <div className="block pt-3 mb-12 text-sm border-y border-pink-light sm:flex">
-          <div className="flex items-center mb-2 text-gray">
-            <TagIcon className="w-4 h-4 mr-1" />
+        <div className="mb-12 block border-y border-pink-light pt-3 text-sm sm:flex">
+          <div className="mb-2 flex items-center text-gray">
+            <TagIcon className="mr-1 h-4 w-4" />
             <p>Tagged:</p>
             {source.frontmatter.tags
               .split(',')
               .map((tag: string, idx: number) => (
                 <a
                   key={idx}
-                  className="px-2 py-1 ml-2 font-mono text-xs font-medium uppercase rounded-lg bg-pink-light text-fg hover:text-red"
+                  className="ml-2 rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-red"
                 >
                   {tag}
                 </a>
               ))}
           </div>
-          <div className="flex items-center mb-3 ml-auto text-gray">
-            <CalendarIcon className="w-4 h-4 mr-1" />
+          <div className="mb-3 ml-auto flex items-center text-gray">
+            <CalendarIcon className="mr-1 h-4 w-4" />
             <p>
               Finished:{' '}
               <span className="text-fg">{source.frontmatter.written}</span>
@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     process.cwd(),
     'posts',
     'reading',
-    `${params.slug}.mdx`
+    `${params?.slug ? params?.slug : 'index'}.mdx`
   )
   const source = fs.readFileSync(fullPath, 'utf-8')
   const mdxSource = await serialize(source, { parseFrontmatter: true })

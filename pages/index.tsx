@@ -30,12 +30,12 @@ import Stars from '../components/stars/stars'
 
 const Hero: React.FC = () => {
   return (
-    <div className="flex flex-col items-center w-full sm:flex-row ">
+    <div className="flex w-full flex-col items-center sm:flex-row ">
       <div className="flex flex-col items-center sm:mr-auto sm:inline">
         <h1 className="text-5xl font-medium tracking-tight text-blue">
           Jacob Keisling
         </h1>
-        <div className="items-center hidden mt-3 text-gray sm:flex">
+        <div className="mt-3 hidden items-center text-gray sm:flex">
           <LocationIcon className="mr-3" />
           <h4 className="text-2xl font-medium tracking-tight">
             Student, University of Chicago
@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
 // Yes, I know, you could also do this with classes instead of components.
 // But it's my circus and my monkeys...
 const FeatureContainer = (props: HTMLProps<HTMLDivElement>) => (
-  <div className="grid gap-6 mb-20 md:grid-cols-2" {...props} />
+  <div className="mb-20 grid gap-6 md:grid-cols-2" {...props} />
 )
 
 const FTImageContainer = (props: HTMLProps<HTMLDivElement>) => (
@@ -63,12 +63,12 @@ const FTImageContainer = (props: HTMLProps<HTMLDivElement>) => (
 const ReviewContainer: React.FC<
   { reviews: ReviewMetadata[] } & HTMLProps<HTMLDivElement>
 > = ({ reviews, ...rest }) => (
-  <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
+  <div className="mb-6 w-full rounded-xl border-2 border-pink-light">
     {reviews
       ? reviews.slice(0, 3).map((review: ReviewMetadata, idx: number) => (
           <div
             key={idx}
-            className="flex px-2 py-3 border-b-2 border-pink-light last-of-type:border-none"
+            className="flex border-b-2 border-pink-light px-2 py-3 last-of-type:border-none"
           >
             <ArrowRight className="mt-[5px] mr-1 h-4 w-4 text-red" />
             <div>
@@ -78,7 +78,7 @@ const ReviewContainer: React.FC<
                 </Link>
               </h4>
               <p className="text-sm text-fg">{review.author}</p>
-              <div className="flex items-center mt-3 font-mono text-gray">
+              <div className="mt-3 flex items-center font-mono text-gray">
                 <Stars n={review.stars} />
                 <span className="ml-2 text-xs">
                   {' | '}
@@ -96,12 +96,12 @@ const PostContainer: React.FC<
   { posts: PostMetadata[] } & HTMLProps<HTMLDivElement>
 > = ({ posts, ...rest }) => {
   return (
-    <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
+    <div className="mb-6 w-full rounded-xl border-2 border-pink-light">
       {posts
         ? posts.slice(0, 3).map((post: PostMetadata, idx: number) => (
             <div
               key={idx}
-              className="flex px-2 py-3 border-b-2 border-pink-light last-of-type:border-none"
+              className="flex border-b-2 border-pink-light px-2 py-3 last-of-type:border-none"
             >
               <div className="m-3">
                 <h4 className="text-lg text-green hover:underline hover:underline-offset-4">
@@ -110,9 +110,9 @@ const PostContainer: React.FC<
                   </Link>
                 </h4>
                 <p className="text-sm text-gray">{post.summary}</p>
-                <div className="flex items-center mt-3 font-mono text-gray">
+                <div className="mt-3 flex items-center font-mono text-gray">
                   <span className="flex items-center text-xs ">
-                    <Calendar className="w-3 h-3 mr-2" /> {post.written}
+                    <Calendar className="mr-2 h-3 w-3" /> {post.written}
                   </span>
                 </div>
               </div>
@@ -128,14 +128,14 @@ const LinksContainer: React.FC<
 > = ({ linkObj, ...rest }) => {
   let links = Object.values(linkObj).flat()
   return (
-    <div className="w-full mb-6 border-2 rounded-xl border-pink-light">
+    <div className="mb-6 w-full rounded-xl border-2 border-pink-light">
       {links
         ? links.slice(0, 4).map((link: any, idx: number) => (
             <div
               key={idx}
-              className="flex p-2 border-b-2 border-pink-light last-of-type:border-none"
+              className="flex border-b-2 border-pink-light p-2 last-of-type:border-none"
             >
-              <p className="mt-1 text-sm text-purple">🡪</p>
+              <ArrowRight className="mt-[5px] h-4 w-4 text-purple" />
               <div className="ml-2">
                 <h4 className="text-lg text-purple hover:underline hover:underline-offset-4">
                   <a href={link.url}>{link.name}</a>
@@ -165,22 +165,20 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
             <div className="border-t-2 border-pink-light">
               <Link href="/about">
                 <h2 className="my-6 text-3xl font-medium tracking-tight text-blue">
-                  <a>About Me</a>
+                  <a>About</a>
                 </h2>
               </Link>
               <p className="mb-6 text-gray">
                 <span className="font-medium text-fg">
-                  This is the website of Gwern Branwen.
+                  You've found Jacob Keisling's personal website,
                 </span>{' '}
-                I write about psychology, statistics, and technology. I am best
-                known for work on the darknet markets & Bitcoin⁠, blinded
-                self-experiments⁠, dual n-back & spaced repetition⁠, and anime
-                neural networks⁠.
+                for better or worse. I write about front-end development,
+                hardware, progress studies, and East Asian history.
               </p>
               <div className="flex">
                 <ButtonLink
                   to="/about"
-                  display_name="Learn more"
+                  display_name="About me"
                   className="bg-blue text-bg"
                 />
                 <ButtonLink
@@ -261,7 +259,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
                 />
               </div>
             </div>
-            <div className="flex min-h-[20rem] min-w-[20rem] items-center justify-around overflow-hidden rounded-2xl bg-pink-light">
+            <div className="flex min-h-[20rem] w-full items-center justify-around overflow-hidden rounded-2xl bg-pink-light">
               <motion.div
                 animate={{
                   rotate: 360,
@@ -273,8 +271,8 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
               >
                 <LinkArrows className="m-auto" />
               </motion.div>
-              <div className="absolute z-20 flex flex-col items-center w-full mx-auto">
-                <LinkCenter className="w-20 h-20" />
+              <div className="absolute z-20 mx-auto flex flex-col items-center">
+                <LinkCenter className="h-20 w-20" />
               </div>
             </div>
           </FeatureContainer>

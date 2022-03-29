@@ -37,6 +37,7 @@ export function getSortedPostsData(folder: string) {
     // Combine the data with the id
     return {
       id,
+      written: matterResult.data.written,
       ...matterResult.data
     }
   })

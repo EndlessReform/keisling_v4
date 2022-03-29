@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app'
 // Shortcode components
 import MDLink from '../components/MDLink/MDLink'
 import { HTMLProps } from 'react'
+import Image from 'next/image'
 
 const components = {
   h1: (props: HTMLProps<HTMLHeadingElement>) => (
@@ -26,17 +27,18 @@ const components = {
   ul: (props: HTMLProps<HTMLUListElement>) => (
     <ul
       {...props}
-      className="m-md-ul mx-4 marker:ml-2 marker:pr-2 marker:text-gray marker:content-['🡪']"
+      className="m-md-ul mx-4 [list-style-image:_url('/icons/arrow-right-fixed-1rem.svg')] marker:ml-2 marker:text-gray"
     />
   ),
-  ol: (props: HTMLProps<HTMLOListElement>) => (
+  ol: (props: any) => (
+    // This should be HTMLProps<HTMLOListElement> but NO apparently that doesnt' work somehow
     <ol
       {...props}
       className="ml-[-6px] list-inside list-[decimal-leading-zero] marker:text-gray"
     />
   ),
   li: (props: HTMLProps<HTMLLIElement>) => (
-    <li {...props} className="pl-2 last-of-type:mb-4" />
+    <li {...props} className="last-of-type:mb-4" />
   ),
   strong: (props: HTMLProps<HTMLElement>) => (
     <strong {...props} className="font-medium" />
@@ -44,12 +46,27 @@ const components = {
   blockquote: (props: HTMLProps<HTMLElement>) => (
     <blockquote
       {...props}
-      className="pt-3 pl-3 m-4 border border-l-4 border-gray"
+      className="m-4 border border-l-4 border-gray pt-3 pl-3"
     />
   ),
   code: (props: HTMLProps<HTMLElement>) => (
-    <code {...props} className="p-1 text-xs rounded bg-pink-light" />
+    <code {...props} className="rounded bg-pink-light p-1 text-xs" />
   ),
+  // Fuck this shit
+  img: (props: any) => {
+    if (props.href && props.href[0] === '/') {
+      return (
+        <Image
+          src={props.href}
+          width="auto"
+          height="auto"
+          className="my-6 rounded-2xl"
+        />
+      )
+    } else {
+      return <img {...props} className="my-6 rounded-2xl" />
+    }
+  },
 }
 
 function MyApp({ Component, pageProps }: AppProps) {

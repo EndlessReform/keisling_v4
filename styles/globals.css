@@ -3,9 +3,52 @@
 @tailwind utilities;
 
 @layer utilities {
+  @font-face {
+    font-family: 'Basier Circle';
+    src: url('/fonts/basiercircle-regular-webfont.woff2');
+    font-style: normal;
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Basier Circle';
+    font-style: normal;
+    src: url('/fonts/basiercircle-medium-webfont.woff2');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Basier Circle';
+    font-style: italic;
+    src: url('/fonts/basiercircle-italic-webfont.woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Basier Circle';
+    font-style: italic;
+    src: url('/fonts/basiercircle-mediumitalic-webfont.woff2');
+    font-weight: 500;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Basier Circle Mono';
+    font-style: normal;
+    src: url('/fonts/basiercirclemono-webfont.woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Basier Circle Mono';
+    font-style: normal;
+    src: url('/fonts/basiercirclemono-medium-webfont.woff2');
+    font-weight: 500;
+    font-display: swap;
+  }
+
+  /*
   html {
     overflow-x: hidden;
   }
+  */
   ul > li > .m-md-ul {
     margin-bottom: 0px;
   }

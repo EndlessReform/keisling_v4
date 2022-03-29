@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ['Basier Circle', 'system-ui'],
-      mono: ['JetBrains Mono', 'Courier New'],
+      mono: ['Basier Circle Mono', 'Courier New'],
     },
     colors: {
       'blue': '#1d64cc',
