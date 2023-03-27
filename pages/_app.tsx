@@ -43,7 +43,7 @@ const components = {
   strong: (props: HTMLProps<HTMLElement>) => (
     <strong {...props} className="font-medium" />
   ),
-  blockquote: (props: HTMLProps<HTMLElement>) => (
+  blockquote: (props: HTMLProps<HTMLQuoteElement>) => (
     <blockquote
       {...props}
       className="m-4 border border-l-4 border-gray pt-3 pl-3"
@@ -58,15 +58,15 @@ const components = {
       return (
         // Local images default to 4:3 resolution.
         // This is bad, but I should be using the Image element anyway so who cares
-        <div className="my-6 max-w-2xl">
+        <span className="my-6 max-w-2xl">
           <Image
+            alt={props.alt}
             src={props.src}
-            width="4000px"
-            height="3000px"
-            layout="responsive"
+            width="4000"
+            height="3000"
             className="rounded-2xl object-cover"
           />
-        </div>
+        </span>
       )
     } else {
       return <img {...props} className="my-6 max-w-2xl rounded-2xl" />

@@ -16,8 +16,8 @@ function Review(props: ReviewMetadata) {
       </span>
       <div>
         <h3 className="text-2xl tracking-tight">
-          <Link href={`/reading/${props.id.split('.').splice(0, 1).join()}`}>
-            <a className="font-medium hover:text-red">{props.title}</a>
+          <Link href={`/reading/${props.id.split('.').splice(0, 1).join()}`} className="font-medium hover:text-red">
+            {props.title}
           </Link>
           <p className="text-base text-gray sm:inline sm:text-2xl">
             {props.author ? ` by ${props.author}` : ''}

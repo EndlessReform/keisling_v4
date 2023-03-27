@@ -38,13 +38,13 @@ const Hero: React.FC = () => {
         <div className="mt-3 hidden items-center text-gray sm:flex">
           <LocationIcon className="mr-3" />
           <h4 className="text-2xl font-medium tracking-tight">
-            Student, University of Chicago
+            Chicago, IL
           </h4>
         </div>
       </div>
       <Image
-        width="128px"
-        height="128px"
+        width="128"
+        height="128"
         src="/images/me.png"
         alt="Jacob Keisling"
       />
@@ -79,7 +79,7 @@ const ReviewContainer: React.FC<
             <div>
               <h4 className="text-xl text-red hover:underline hover:underline-offset-4">
                 <Link href={`/reading/${review.id.split('.')[0]}`}>
-                  <a>{review.title}</a>
+                  {review.title}
                 </Link>
               </h4>
               <p className="text-sm text-fg">{review.author}</p>
@@ -111,7 +111,7 @@ const PostContainer: React.FC<
               <div className="m-3">
                 <h4 className="text-xl text-green hover:underline hover:underline-offset-4">
                   <Link href={`/writing/${post.id.split('.')[0]}`}>
-                    <a>{post.title}</a>
+                    {post.title}
                   </Link>
                 </h4>
                 <p className="text-sm text-gray">{post.summary}</p>
@@ -167,14 +167,14 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
             <div className="border-t-2 border-pink-light">
               <Link href="/about">
                 <h2 className="my-6 text-4xl font-medium tracking-tight text-blue">
-                  <a href="/about">About</a>
+                  About
                 </h2>
               </Link>
               <p className="mb-6 text-lg text-gray">
                 <span className="font-medium text-fg">
                   You've found Jacob Keisling's personal website,
                 </span>{' '}
-                for better or worse. I write about front-end development,
+                for better or worse. I write about deep learning, front-end development,
                 hardware, progress studies, and East Asian history.
               </p>
               <div className="flex">

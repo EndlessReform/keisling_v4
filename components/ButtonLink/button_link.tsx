@@ -20,8 +20,7 @@ const ButtonLink = (props: ButtonLinkProps) => {
             )
         }
         >
-        <Link href={props.to}>
-            <a className='flex items-center'>
+        <Link href={props.to} className='flex items-center'>
             <motion.div
                 transition={{
                 duration: 0.5,
@@ -37,7 +36,6 @@ const ButtonLink = (props: ButtonLinkProps) => {
                 />
             </motion.div>
             {props.display_name}
-            </a>
         </Link>
         </motion.div>
     )

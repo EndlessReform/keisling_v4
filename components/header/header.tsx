@@ -32,7 +32,7 @@ const NavItem = (props: NavItemProps) => {
         className={clsx('flex', 'items-center', 'text-gray', props.color_rule)}
       >
         <Link href={props.to}>
-          <a>{props.display_name}</a>
+          {props.display_name}
         </Link>
         {submenuExists ? <Chevron /> : null}
       </div>
@@ -46,10 +46,8 @@ const NavItem = (props: NavItemProps) => {
                   className="left-[-50%] flex w-[150%] items-center"
                 >
                   {item.icon}
-                  <Link href={item.to}>
-                    <a href={item.to} className="ml-1 text-gray">
+                  <Link href={item.to}  className="ml-1 text-gray">
                       {item.display_name}
-                    </a>
                   </Link>
                 </li>
               )
@@ -68,10 +66,8 @@ const Header = () => {
     <nav className="fixed z-30 w-full border-b border-bg bg-bg/90">
       <div className="flex max-w-screen-lg items-center p-4 sm:px-8 lg:mx-auto">
         <motion.div whileHover={{ rotate: '45deg' }}>
-          <Link href="/">
-            <a href="/" aria-label="Home">
-              <Logo className={clsx('h-12 w-12', curr_color)} />
-            </a>
+          <Link href="/" aria-label="Home">
+            <Logo className={clsx('h-12 w-12', curr_color)} />
           </Link>
         </motion.div>
         <div className="ml-auto flex items-center gap-6 ">
