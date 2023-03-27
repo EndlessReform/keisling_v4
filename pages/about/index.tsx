@@ -73,12 +73,12 @@ export default function Me({ source }: AboutProps) {
             websites, <span className="italic">inter alia</span>.
           </h1>
           <div className="mt-12 flex flex-wrap items-end gap-x-12 font-mono text-gray">
-            <div className="mb-[-0.5rem] hidden sm:block">
+            <div className="hidden sm:block">
               <Image
                 src="/images/me.png"
                 alt="That's me, Jacob"
-                height="128px"
-                width="128px"
+                height="128"
+                width="128"
               />
             </div>
             <a

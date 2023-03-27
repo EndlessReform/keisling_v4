@@ -16,8 +16,8 @@ function Post(props: PostMetadata) {
       </span>
       <div>
         <h3 className="mb-2 text-2xl tracking-tight">
-          <Link href={`/writing/${props.id.split('.').splice(0, 1).join()}`}>
-            <a className="font-medium hover:text-green">{props.title}</a>
+          <Link href={`/writing/${props.id.split('.').splice(0, 1).join()}`} className="font-medium hover:text-green">
+            {props.title}
           </Link>
         </h3>
         <p className="max-w-xl text-sm text-gray">{props.summary}</p>
