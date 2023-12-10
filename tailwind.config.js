@@ -2,12 +2,14 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     fontFamily: {
       sans: ['Basier Circle', 'system-ui'],
+      serif: ['var(--font-newsreader)'],
       mono: ['Basier Circle Mono', 'Courier New'],
     },
     colors: {

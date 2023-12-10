@@ -7,7 +7,7 @@ import { MDXRemote } from 'next-mdx-remote'
 // Components
 import Head from 'next/head'
 import MDXLayout from '../../components/mdx_layout/mdx_layout'
-import Stars from '../../components/stars/stars'
+import Stars from '../../components/Stars/Stars'
 
 // Assets
 import TagIcon from '../../public/icons/tag.svg'
@@ -27,13 +27,13 @@ export default function BookReview({
           <h1 className="mt-16 mb-4 text-center text-4xl font-medium tracking-tight text-red sm:text-5xl">
             {source.frontmatter.title}
           </h1>
-          <h2 className="mb-4 text-2xl text-gray">
+          <h2 className="text-gray mb-4 text-2xl">
             {source.frontmatter.author}
           </h2>
           <Stars n={source.frontmatter.stars} className="mb-8 text-xl" />
         </div>
-        <div className="border-gray-100 mb-12 block border-y pt-3 text-sm sm:flex">
-          <div className="mb-2 flex items-center text-gray">
+        <div className="mb-12 block border-y border-gray-100 pt-3 text-sm sm:flex">
+          <div className="text-gray mb-2 flex items-center">
             <TagIcon className="mr-1 h-4 w-4" />
             <p>Tagged:</p>
             {source.frontmatter.tags
@@ -47,7 +47,7 @@ export default function BookReview({
                 </a>
               ))}
           </div>
-          <div className="mb-3 ml-auto flex items-center text-gray">
+          <div className="text-gray mb-3 ml-auto flex items-center">
             <CalendarIcon className="mr-1 h-4 w-4" />
             <p>
               Finished:{' '}

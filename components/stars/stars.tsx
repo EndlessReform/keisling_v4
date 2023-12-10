@@ -4,7 +4,7 @@ type StarProps = {
   n: number
 }
 
-const Stars: React.FC<StarProps & HTMLProps<HTMLParagraphElement>> = ({
+export const Stars: React.FC<StarProps & HTMLProps<HTMLParagraphElement>> = ({
   n,
   ...props
 }) => {
@@ -15,5 +15,3 @@ const Stars: React.FC<StarProps & HTMLProps<HTMLParagraphElement>> = ({
     </p>
   )
 }
-
-export default Stars

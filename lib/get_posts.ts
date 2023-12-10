@@ -1,29 +1,30 @@
 import fs from 'fs'
+import { readdir, readFile } from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
 
 export type ReviewMetadata = {
   id: string
   title: string
-  author: string | undefined
   written: string
-  stars: number
-  tags: string
+  author?: string
+  stars?: number
+  tags?: string
 }
 
 export type PostMetadata = {
   id: string
   title: string
   written: string
-  tags: string
-  summary: string
+  tags?: string
+  summary?: string
 }
 
-export function getSortedPostsData(folder: string) {
+export async function getSortedPostsData(folder: string) {
   // Get file names under /posts
   const postsDirectory = path.join(process.cwd(), 'posts', folder)
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames.map(fileName => {
+  const fileNames = await readdir(postsDirectory)
+  const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '')
 
@@ -37,8 +38,9 @@ export function getSortedPostsData(folder: string) {
     // Combine the data with the id
     return {
       id,
+      title: matterResult.data.title,
       written: matterResult.data.written,
-      ...matterResult.data
+      ...matterResult.data,
     }
   })
   // Sort posts by date
@@ -59,11 +61,9 @@ export function getPaths(folder: string) {
   const fileNames = fs
     .readdirSync(p)
     .filter((fname) => fname.split('.').pop() == 'mdx')
-  return(
-    fileNames.map((fname) => ({
-      params: {
-        slug: fname.replace(/\.mdx/, ''),
-      },
-    }))
-  )
+  return fileNames.map((fname) => ({
+    params: {
+      slug: fname.replace(/\.mdx/, ''),
+    },
+  }))
 }

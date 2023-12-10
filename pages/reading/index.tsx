@@ -2,7 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { getSortedPostsData, ReviewMetadata } from '../../lib/get_posts'
 
 import Link from 'next/link'
-import Stars from '../../components/stars/stars'
+import { Stars } from '../../components'
 import LandingLayout from '../../components/landing-layout/landing-layout'
 
 // Assets
@@ -27,13 +27,13 @@ function Review(props: ReviewMetadata) {
           </p>
         </h3>
         <div className="text-gray flex items-center gap-2 font-mono">
-          <Stars n={props.stars} />
+          <Stars n={props.stars || 0} />
           {' | '}
           <span className="text-xs">Read {props.written}</span>
         </div>
       </div>
       <div className="mt-3 ml-auto flex gap-2 sm:mt-0">
-        {props.tags.split(',').map((tag: string, idx) => (
+        {props.tags?.split(',').map((tag: string, idx) => (
           <span key={idx}>
             <a className="rounded-lg bg-pink-light px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-red">
               {tag}
