@@ -1,7 +1,7 @@
-import { Header } from '../Header'
-import Footer from '../footer/footer'
+import { Header } from '../components'
+import Footer from '../components/footer/footer'
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="mx-auto min-h-screen overflow-hidden bg-bg">
       <Header />

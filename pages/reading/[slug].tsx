@@ -32,7 +32,7 @@ export default function BookReview({
           </h2>
           <Stars n={source.frontmatter.stars} className="mb-8 text-xl" />
         </div>
-        <div className="mb-12 block border-y border-pink-light pt-3 text-sm sm:flex">
+        <div className="border-gray-100 mb-12 block border-y pt-3 text-sm sm:flex">
           <div className="mb-2 flex items-center text-gray">
             <TagIcon className="mr-1 h-4 w-4" />
             <p>Tagged:</p>

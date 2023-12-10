@@ -10,13 +10,16 @@ import Calendar from '../../public/icons/calendar.svg'
 
 function Post(props: PostMetadata) {
   return (
-    <li className="mt-4 block border-b border-pink-light pb-4 sm:flex">
+    <li className="border-gray-100 mt-4 block border-b pb-4 sm:flex">
       <span className="ml-[-0.25rem] hidden pt-1 pr-1 text-green sm:inline">
         <ArrowRight className="h-6 w-6" />
       </span>
       <div>
         <h3 className="mb-2 text-2xl tracking-tight">
-          <Link href={`/writing/${props.id.split('.').splice(0, 1).join()}`} className="font-medium hover:text-green">
+          <Link
+            href={`/writing/${props.id.split('.').splice(0, 1).join()}`}
+            className="font-medium hover:text-green"
+          >
             {props.title}
           </Link>
         </h3>

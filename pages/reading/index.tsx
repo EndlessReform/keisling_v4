@@ -10,20 +10,23 @@ import ArrowRight from '../../public/icons/arrow-right.svg'
 
 function Review(props: ReviewMetadata) {
   return (
-    <li className="mt-4 block border-b border-pink-light pb-4 sm:flex">
+    <li className="mt-4 block border-b border-gray-100 pb-4 sm:flex">
       <span className="ml-[-0.25rem] hidden pt-1 pr-1 text-red sm:inline">
         <ArrowRight className="h-6 w-6" />
       </span>
       <div>
         <h3 className="text-2xl tracking-tight">
-          <Link href={`/reading/${props.id.split('.').splice(0, 1).join()}`} className="font-medium hover:text-red">
+          <Link
+            href={`/reading/${props.id.split('.').splice(0, 1).join()}`}
+            className="font-medium hover:text-red"
+          >
             {props.title}
           </Link>
-          <p className="text-base text-gray sm:inline sm:text-2xl">
+          <p className="text-base text-gray-500 sm:inline sm:text-2xl">
             {props.author ? ` by ${props.author}` : ''}
           </p>
         </h3>
-        <div className="flex items-center gap-2 font-mono text-gray">
+        <div className="text-gray flex items-center gap-2 font-mono">
           <Stars n={props.stars} />
           {' | '}
           <span className="text-xs">Read {props.written}</span>
@@ -50,7 +53,7 @@ export default function Reading({
       title="Reading"
       about="Short notes on books I've read recently"
     >
-      <div className="border-t border-gray text-fg">
+      <div className="border-gray border-t text-fg">
         <ul>
           {allPostsData.map((data: ReviewMetadata) => (
             <Review {...data} key={data.id} />

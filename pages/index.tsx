@@ -28,18 +28,16 @@ import Sheets from '../public/images/sheets.svg'
 import Stars from '../components/stars/stars'
 import PageHead from '../components/page-head/page-head'
 
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
     <div className="flex w-full flex-col items-center sm:flex-row ">
       <div className="flex flex-col items-center sm:mr-auto sm:inline">
-        <h1 className="text-5xl font-medium tracking-tight text-blue">
+        <h1 className="text-5xl font-medium tracking-tight text-brand-500">
           Jacob Keisling
         </h1>
-        <div className="mt-3 hidden items-center text-gray sm:flex">
+        <div className="mt-3 hidden items-center text-gray-400 sm:flex">
           <LocationIcon className="mr-3" />
-          <h4 className="text-2xl font-medium tracking-tight">
-            Chicago, IL
-          </h4>
+          <h4 className="text-2xl font-medium tracking-tight">Chicago, IL</h4>
         </div>
       </div>
       <Image
@@ -68,12 +66,12 @@ const FTImageContainer = (props: HTMLProps<HTMLDivElement>) => (
 const ReviewContainer: React.FC<
   { reviews: ReviewMetadata[] } & HTMLProps<HTMLDivElement>
 > = ({ reviews, ...rest }) => (
-  <div className="mb-6 w-full rounded-xl border-2 border-pink-light">
+  <div className="mb-6 w-full rounded-xl border-2 border-gray-100">
     {reviews
       ? reviews.slice(0, 3).map((review: ReviewMetadata, idx: number) => (
           <div
             key={idx}
-            className="flex border-b-2 border-pink-light px-2 py-3 last-of-type:border-none"
+            className="flex border-b-2 border-gray-100 px-2 py-3 last-of-type:border-none"
           >
             <ArrowRight className="mt-[7px] mr-1 h-4 w-4 text-red" />
             <div>
@@ -83,7 +81,7 @@ const ReviewContainer: React.FC<
                 </Link>
               </h4>
               <p className="text-sm text-fg">{review.author}</p>
-              <div className="mt-3 flex items-center font-mono text-gray">
+              <div className="text-gray mt-3 flex items-center font-mono">
                 <Stars n={review.stars} />
                 <span className="ml-2 text-xs">
                   {' | '}
@@ -101,12 +99,12 @@ const PostContainer: React.FC<
   { posts: PostMetadata[] } & HTMLProps<HTMLDivElement>
 > = ({ posts, ...rest }) => {
   return (
-    <div className="mb-6 w-full rounded-xl border-2 border-pink-light">
+    <div className="mb-6 w-full rounded-xl border-2 border-gray-100">
       {posts
         ? posts.slice(0, 3).map((post: PostMetadata, idx: number) => (
             <div
               key={idx}
-              className="flex border-b-2 border-pink-light p-2 last-of-type:border-none"
+              className="flex border-b-2 border-gray-100 p-2 last-of-type:border-none"
             >
               <div className="m-3">
                 <h4 className="text-xl text-green hover:underline hover:underline-offset-4">
@@ -114,8 +112,8 @@ const PostContainer: React.FC<
                     {post.title}
                   </Link>
                 </h4>
-                <p className="text-sm text-gray">{post.summary}</p>
-                <div className="mt-3 flex items-center font-mono text-gray">
+                <p className="text-gray text-sm">{post.summary}</p>
+                <div className="text-gray mt-3 flex items-center font-mono">
                   <span className="flex items-center text-xs ">
                     <Calendar className="mr-2 h-3 w-3" /> {post.written}
                   </span>
@@ -133,12 +131,12 @@ const LinksContainer: React.FC<
 > = ({ linkObj, ...rest }) => {
   let links = Object.values(linkObj).flat()
   return (
-    <div className="mb-6 w-full rounded-xl border-2 border-pink-light">
+    <div className="mb-6 w-full rounded-xl border-2 border-gray-100">
       {links
         ? links.slice(0, 4).map((link: any, idx: number) => (
             <div
               key={idx}
-              className="flex border-b-2 border-pink-light p-2 last-of-type:border-none"
+              className="flex border-b-2 border-gray-100 p-2 last-of-type:border-none"
             >
               <ArrowRight className="mt-[7px] h-4 w-4 text-purple" />
               <div className="ml-2">
@@ -146,7 +144,7 @@ const LinksContainer: React.FC<
                   <a href={link.url}>{link.name}</a>
                 </h4>
                 {link.summary && (
-                  <p className="text-sm text-gray">{link.summary}</p>
+                  <p className="text-gray text-sm">{link.summary}</p>
                 )}
               </div>
             </div>
@@ -164,18 +162,18 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
         <main className="w-full">
           <Hero />
           <FeatureContainer>
-            <div className="border-t-2 border-pink-light">
+            <div className="border-t-2 border-gray-100">
               <Link href="/about">
                 <h2 className="my-6 text-4xl font-medium tracking-tight text-blue">
                   About
                 </h2>
               </Link>
-              <p className="mb-6 text-lg text-gray">
+              <p className="mb-6 text-lg text-gray-500">
                 <span className="font-medium text-fg">
                   You've found Jacob Keisling's personal website,
                 </span>{' '}
-                for better or worse. I write about deep learning, front-end development,
-                hardware, progress studies, and East Asian history.
+                for better or worse. I write about deep learning, front-end
+                development, hardware, progress studies, and East Asian history.
               </p>
               <div className="flex">
                 <ButtonLink
@@ -195,11 +193,11 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
             </FTImageContainer>
           </FeatureContainer>
           <FeatureContainer>
-            <div className="border-t-2 border-pink-light">
+            <div className="border-t-2 border-gray-100">
               <h2 className="my-6 text-4xl font-medium tracking-tight text-red">
                 Reading
               </h2>
-              <p className="mb-6 text-lg text-gray">
+              <p className="text-gray mb-6 text-lg">
                 Brief thoughts on what I've been reading lately
               </p>
               <ReviewContainer reviews={props.reviews} />
@@ -218,7 +216,7 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
             </FTImageContainer>
           </FeatureContainer>
           <FeatureContainer>
-            <div className="border-t-2 border-pink-light">
+            <div className="border-t-2 border-gray-100">
               <h2 className="my-6 text-4xl font-medium tracking-tight text-green">
                 Writing
               </h2>
@@ -238,11 +236,11 @@ const Home: NextPage = (props: InferGetStaticPropsType<GetStaticProps>) => {
             </FTImageContainer>
           </FeatureContainer>
           <FeatureContainer>
-            <div className="border-t-2 border-pink-light">
+            <div className="border-t-2 border-gray-100">
               <h2 className="my-6 text-4xl font-medium tracking-tight text-purple">
                 Links
               </h2>
-              <p className="mb-6 text-lg text-gray">
+              <p className="text-gray mb-6 text-lg">
                 Interesting websites you might have missed
               </p>
               <LinksContainer linkObj={props.links} />

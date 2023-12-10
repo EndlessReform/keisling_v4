@@ -22,7 +22,7 @@ function Category({ category }) {
       onClick={() => {
         setCurrCategory(category)
       }}
-      className="text-2xl after:text-gray after:content-['_/'] last:after:content-none"
+      className="text-2xl after:text-gray-500 after:content-['_/'] last:after:content-none"
     >
       <h2
         className={clsx(
@@ -42,14 +42,14 @@ export default function LinksPage({ links }) {
 
   return (
     <CategoryContext.Provider value={[currCategory, setCurrCategory]}>
-      <PageHead title={"Links | Jacob Keisling"} />
+      <PageHead title={'Links | Jacob Keisling'} />
       <LandingLayout
         title="Links"
         about={`A collection of ${
           Object.values(links).flat().length
         } interesting links and resources`}
       >
-        <div className="flex flex-wrap gap-2 py-4 border-y border-t-pink-light border-b-fg">
+        <div className="flex flex-wrap gap-2 border-y border-t-pink-light border-b-fg py-4">
           {categories.map((cname, key) => (
             <Category category={cname} key={key} />
           ))}
@@ -58,27 +58,27 @@ export default function LinksPage({ links }) {
           {links[currCategory].map((l, key) => (
             <motion.div
               key={key}
-              className="py-4 border-b border-b-pink-light sm:flex"
+              className="border-b border-b-pink-light py-4 sm:flex"
               animate={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 20 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.35 }}
             >
               <div className="flex">
-                <ArrowRight className="mt-1 mr-1 w-5 h-5 text-purple"/>
+                <ArrowRight className="mt-1 mr-1 h-5 w-5 text-purple" />
                 <div>
                   <h4 className="text-xl tracking-tight hover:text-purple">
                     <a href={l.url}>{l.name}</a>
                   </h4>
                   {l.summary ? (
-                    <p className="max-w-md pt-2 text-sm text-gray">
+                    <p className="text-gray max-w-md pt-2 text-sm">
                       {l.summary}
                     </p>
                   ) : null}
                   {l.subpages
                     ? l.subpages.map((pg, key) => (
                         <div key={key} className="mt-2 text-sm">
-                          <ArrowRight className="w-3 h-3 mr-1 inline text-gray"/>
+                          <ArrowRight className="text-gray mr-1 inline h-3 w-3" />
                           <a href={pg.url}>{pg.name}</a>
                           {pg.summary ? (
                             <span className="text-gray">{` - ${pg.summary}`}</span>
@@ -91,16 +91,16 @@ export default function LinksPage({ links }) {
               <div className="hidden sm:ml-auto sm:inline-block">
                 <a
                   href={l.url}
-                  className="font-mono text-xs text-gray underline-offset-2 hover:underline flex items-center pt-1"
+                  className="flex items-center pt-1 font-mono text-xs text-gray-500 underline-offset-2 hover:underline"
                 >
-                  <LinkIcon className="inline mr-1" />
+                  <LinkIcon className="mr-1 inline" />
                   {l.url}
                 </a>
               </div>
             </motion.div>
           ))}
         </div>
-        <p className="pt-4 font-mono text-xs text-gray">
+        <p className="text-gray pt-4 font-mono text-xs">
           <strong>Disclaimer: </strong>Links do not necessarily imply my
           endorsement of all contents, and certainly not my employer's.
         </p>
