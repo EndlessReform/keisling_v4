@@ -1,5 +1,4 @@
-import { Header } from '../components'
-import Footer from '../components/footer/footer'
+import { Header, Footer } from '../components'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -1,14 +1,14 @@
 import Image from 'next/image'
-import Logo from '../../public/logos/logo.svg'
+import { Logo } from '../Logo'
 
 import Container from '../container/container'
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <Container>
-      <footer className="flex items-center border-t border-gray pt-3 pb-16 text-xs text-gray">
+      <footer className="border-gray flex items-center border-t pt-3 pb-16 text-xs text-gray-400">
         <div className="mr-3 h-6 w-6">
-          <Logo className="h-auto w-auto" />
+          <Logo className="h-auto w-auto text-gray-800" />
         </div>
         <p>© Jacob Keisling</p>
         <div className="ml-auto">
@@ -26,5 +26,3 @@ const Footer = () => {
     </Container>
   )
 }
-
-export default Footer

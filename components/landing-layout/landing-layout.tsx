@@ -2,7 +2,6 @@ import clsx from 'clsx'
 import PageHead from '../page-head/page-head'
 import Container from '../../components/container/container'
 import Layout from '../../components/layout/layout'
-import useAccentColor from '../../lib/useAccentColor'
 
 type LLProps = {
   title: string
@@ -11,21 +10,15 @@ type LLProps = {
 }
 
 export default function LandingLayout(props: LLProps) {
-  let accent = useAccentColor()
   return (
     <Layout>
       <PageHead title={`${props.title} | Jacob Keisling`} />
       <Container>
         <div>
-          <h1
-            className={clsx(
-              'mt-6 mb-4 text-5xl font-medium tracking-tight',
-              accent
-            )}
-          >
+          <h1 className={clsx('mt-6 mb-4 text-5xl font-medium tracking-tight')}>
             {props.title}
           </h1>
-          <p className="mb-8 text-xl text-gray">{props.about}</p>
+          <p className="text-gray mb-8 text-xl">{props.about}</p>
         </div>
         {props.children}
       </Container>

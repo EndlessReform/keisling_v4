@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import clsx from 'clsx'
 
-import { ChevronDown } from '@carbon/icons-react'
+//import { ChevronDown } from '@carbon/icons-react'
 import { Logo } from '../Logo'
 
 interface NavSubmenuProps {
@@ -31,7 +31,6 @@ const NavItem = (props: NavItemProps) => {
         )}
       >
         <Link href={props.to}>{props.display_name}</Link>
-        {submenuExists ? <ChevronDown /> : null}
       </div>
       {submenuExists ? (
         <div className="invisible absolute group-hover:visible ">
@@ -63,7 +62,7 @@ export const Header = () => {
         <motion.div whileHover={{ rotate: '45deg' }}>
           <Link href="/" aria-label="Home">
             <Logo
-              className={'h-12 w-12 text-brand-500 hover:text-brand-600'}
+              className={'h-8 w-8 text-brand-500 hover:text-brand-600'}
               alt="Jacob Keisling's logo"
             />
           </Link>

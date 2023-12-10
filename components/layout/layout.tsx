@@ -1,5 +1,5 @@
 import { Header } from '../Header'
-import Footer from '../footer/footer'
+import { Footer } from '../Footer/'
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
