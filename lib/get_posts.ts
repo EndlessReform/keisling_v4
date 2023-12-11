@@ -1,29 +1,32 @@
 import fs from 'fs'
+import { readdir } from 'fs/promises'
+import { readFile } from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
+import { Metadata } from 'next'
 
-export type ReviewMetadata = {
-  id: string
-  title: string
-  author: string | undefined
-  written: string
-  stars: number
-  tags: string
-}
-
-export type PostMetadata = {
+export type ReadingFrontmatter = {
   id: string
   title: string
   written: string
-  tags: string
-  summary: string
+  author?: string
+  stars?: number
+  tags?: string
 }
 
-export function getSortedPostsData(folder: string) {
+export type WritingFrontmatter = {
+  id: string
+  title: string
+  written: string
+  tags?: string
+  summary?: string
+}
+
+export async function getSortedPostsData(folder: string) {
   // Get file names under /posts
   const postsDirectory = path.join(process.cwd(), 'posts', folder)
-  const fileNames = fs.readdirSync(postsDirectory)
-  const allPostsData = fileNames.map(fileName => {
+  const fileNames = await readdir(postsDirectory)
+  const allPostsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '')
 
@@ -37,8 +40,9 @@ export function getSortedPostsData(folder: string) {
     // Combine the data with the id
     return {
       id,
+      title: matterResult.data.title,
       written: matterResult.data.written,
-      ...matterResult.data
+      ...matterResult.data,
     }
   })
   // Sort posts by date
@@ -54,16 +58,30 @@ export function getSortedPostsData(folder: string) {
 }
 
 /** Get all valid posts from posts */
-export function getPaths(folder: string) {
+export async function getSlugsFromFolder(folder: string) {
   let p = path.join(process.cwd(), 'posts', folder)
-  const fileNames = fs
-    .readdirSync(p)
-    .filter((fname) => fname.split('.').pop() == 'mdx')
-  return(
-    fileNames.map((fname) => ({
-      params: {
-        slug: fname.replace(/\.mdx/, ''),
-      },
-    }))
-  )
+  const allFiles = await readdir(p)
+  const fileNames = allFiles.filter((fname) => fname.split('.').pop() == 'mdx')
+  return fileNames.map((fname) => ({
+    slug: fname.replace(/\.mdx/, ''),
+  }))
+}
+
+/** Convenience function to get MDX name */
+export const makeFullPath = (folder: string, slug: string) =>
+  path.join(process.cwd(), 'posts', `${folder}`, `${slug}.mdx`)
+
+/** Convenience function to get sane page title */
+export async function makeMetadata(
+  folder: string,
+  slug: string
+): Promise<Metadata> {
+  const mdxPath = makeFullPath(folder, slug)
+  const mdxSource = await readFile(mdxPath, 'utf-8')
+  const metadata = matter(mdxSource).data as ReadingFrontmatter
+
+  return {
+    title: `${metadata.title}`,
+    description: `Short notes on ${metadata.title} by ${metadata.author}`,
+  }
 }
