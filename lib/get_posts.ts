@@ -1,7 +1,9 @@
 import fs from 'fs'
 import { readdir } from 'fs/promises'
+import { readFile } from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
+import { Metadata } from 'next'
 
 export type ReadingFrontmatter = {
   id: string
@@ -63,4 +65,23 @@ export async function getSlugsFromFolder(folder: string) {
   return fileNames.map((fname) => ({
     slug: fname.replace(/\.mdx/, ''),
   }))
+}
+
+/** Convenience function to get MDX name */
+export const makeFullPath = (folder: string, slug: string) =>
+  path.join(process.cwd(), 'posts', `${folder}`, `${slug}.mdx`)
+
+/** Convenience function to get sane page title */
+export async function makeMetadata(
+  folder: string,
+  slug: string
+): Promise<Metadata> {
+  const mdxPath = makeFullPath(folder, slug)
+  const mdxSource = await readFile(mdxPath, 'utf-8')
+  const metadata = matter(mdxSource).data as ReadingFrontmatter
+
+  return {
+    title: `${metadata.title}`,
+    description: `Short notes on ${metadata.title} by ${metadata.author}`,
+  }
 }

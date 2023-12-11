@@ -1,10 +1,24 @@
+import { Metadata } from 'next'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import path from 'path'
-import { getSlugsFromFolder, WritingFrontmatter } from '../../../lib/get_posts'
+import {
+  getSlugsFromFolder,
+  makeMetadata,
+  WritingFrontmatter,
+} from '../../../lib/get_posts'
 
 import { Calendar, Tag as TagIcon } from '@carbon/icons-react'
 import { articleShortcodes, Container, Tag } from '../../../components'
 import { readFile } from 'fs/promises'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const metadata = await makeMetadata('writing', params.slug)
+  return metadata
+}
 
 export default async function Article({
   params,

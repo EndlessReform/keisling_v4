@@ -1,14 +1,23 @@
 import { Metadata } from 'next'
-import { readFile, readdir } from 'fs/promises'
-import path from 'path'
+import { readFile } from 'fs/promises'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { Calendar, Tag as TagIcon } from '@carbon/icons-react'
 
 import { articleShortcodes, Container, Stars, Tag } from '../../../components'
-import { getSlugsFromFolder, ReadingFrontmatter } from '../../../lib/get_posts'
+import {
+  getSlugsFromFolder,
+  makeFullPath,
+  ReadingFrontmatter,
+  makeMetadata,
+} from '../../../lib/get_posts'
 
-export const metadata: Metadata = {
-  title: 'FIX THIS!!!',
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const metadata = await makeMetadata('reading', params.slug)
+  return metadata
 }
 
 export default async function BookReview({
@@ -17,13 +26,7 @@ export default async function BookReview({
   params: { slug: string }
 }) {
   // God, this is so stupid
-  const fullPath = path.join(
-    process.cwd(),
-    'posts',
-    'reading',
-    `${params?.slug ? params?.slug : 'index'}.mdx`
-  )
-
+  const fullPath = makeFullPath('reading', params.slug)
   const source = await readFile(fullPath, 'utf-8')
 
   // https://github.com/hashicorp/next-mdx-remote#react-server-components-rsc--nextjs-app-directory-support
@@ -48,9 +51,11 @@ export default async function BookReview({
         <div className="mb-2 flex items-center text-gray-500">
           <TagIcon className="mr-1 h-4 w-4" />
           <p>Tagged:</p>
-          {frontmatter.tags?.split(',').map((tag: string, idx: number) => (
-            <Tag key={idx}>{tag}</Tag>
-          ))}
+          <div className="ml-2 flex gap-2">
+            {frontmatter.tags?.split(',').map((tag: string, idx: number) => (
+              <Tag key={idx}>{tag}</Tag>
+            ))}
+          </div>
         </div>
         <div className="mb-3 ml-auto flex items-center text-gray-500">
           <Calendar className="mr-1 h-4 w-4" />

@@ -25,7 +25,8 @@
     "next-mdx-remote": "^4.4.1",
     "next-sitemap": "^4.0.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sharp": "^0.33.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^7.0.0",
