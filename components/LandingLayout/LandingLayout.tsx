@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { Container } from '../Container/'
 
 type LandingLayoutProps = {

@@ -15,5 +15,5 @@ export async function get_links() {
   const fileContents = await readFile(yamlLocation, 'utf-8')
   // Dangerously coerce to type.
   // TODO: Validate this.
-  return yaml.load(fileContents) as LinkMetadata[]
+  return yaml.load(fileContents) as Record<string, LinkMetadata[]>
 }
