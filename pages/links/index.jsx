@@ -9,8 +9,7 @@ import PageHead from '../../components/page-head/page-head'
 import LandingLayout from '../../components/landing-layout/landing-layout'
 import clsx from 'clsx'
 
-import ArrowRight from '../../public/icons/arrow-right.svg'
-import LinkIcon from '../../public/icons/link.svg'
+import { ArrowRight, Link as LinkIcon } from '@carbon/icons-react'
 
 const CategoryContext = createContext()
 

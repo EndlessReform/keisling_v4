@@ -23,7 +23,7 @@ export const articleShortcodes = {
   ul: (props: HTMLProps<HTMLUListElement>) => (
     <ul
       {...props}
-      className="m-md-ul mx-4 [list-style-image:_url('/icons/arrow-right-fixed-1rem.svg')] marker:ml-2 marker:text-gray-500"
+      className="m-md-ul mx-4 [list-style-image:_url('/icons/mdx-arrow-right.svg')] marker:ml-2 marker:text-gray-500"
     />
   ),
   ol: (props: any) => (

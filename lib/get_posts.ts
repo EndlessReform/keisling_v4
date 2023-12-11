@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { readdir, readFile } from 'fs/promises'
+import { readdir } from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
 
@@ -12,7 +12,7 @@ export type ReadingFrontmatter = {
   tags?: string
 }
 
-export type PostMetadata = {
+export type WritingFrontmatter = {
   id: string
   title: string
   written: string
@@ -56,14 +56,11 @@ export async function getSortedPostsData(folder: string) {
 }
 
 /** Get all valid posts from posts */
-export function getPaths(folder: string) {
+export async function getSlugsFromFolder(folder: string) {
   let p = path.join(process.cwd(), 'posts', folder)
-  const fileNames = fs
-    .readdirSync(p)
-    .filter((fname) => fname.split('.').pop() == 'mdx')
+  const allFiles = await readdir(p)
+  const fileNames = allFiles.filter((fname) => fname.split('.').pop() == 'mdx')
   return fileNames.map((fname) => ({
-    params: {
-      slug: fname.replace(/\.mdx/, ''),
-    },
+    slug: fname.replace(/\.mdx/, ''),
   }))
 }

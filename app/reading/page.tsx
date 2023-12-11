@@ -2,8 +2,7 @@ import { Metadata } from 'next'
 import { getSortedPostsData, ReadingFrontmatter } from '../../lib/get_posts'
 
 import Link from 'next/link'
-import { Stars } from '../../components'
-import { LandingLayout } from '../../components'
+import { LandingLayout, Stars, Tag } from '../../components'
 
 // Assets
 import { ArrowRight } from '@carbon/icons-react'
@@ -35,9 +34,7 @@ function Review(props: ReadingFrontmatter) {
       <div className="mt-3 ml-auto flex gap-2 sm:mt-0">
         {props.tags?.split(',').map((tag: string, idx) => (
           <span key={idx}>
-            <a className="rounded-lg bg-gray-100 px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-blue-500">
-              {tag}
-            </a>
+            <Tag>{tag}</Tag>
           </span>
         ))}
       </div>

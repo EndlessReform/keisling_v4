@@ -1,13 +1,13 @@
-import { getSortedPostsData, PostMetadata } from '../../lib/get_posts'
+import { getSortedPostsData, WritingFrontmatter } from '../../lib/get_posts'
 import { Metadata } from 'next'
 
 import Link from 'next/link'
-import { LandingLayout } from '../../components'
+import { LandingLayout, Tag } from '../../components'
 
 // Assets
 import { ArrowRight, Calendar } from '@carbon/icons-react'
 
-function Post(props: PostMetadata) {
+function Post(props: WritingFrontmatter) {
   return (
     <li className="mt-4 block border-b border-gray-100 pb-4 sm:flex">
       <span className="ml-[-0.25rem] hidden pt-1 pr-2 text-fg sm:inline">
@@ -29,12 +29,10 @@ function Post(props: PostMetadata) {
           </span>
         </div>
       </div>
-      <div className="mt-3 ml-auto flex gap-2 sm:mt-0">
+      <div className="mt-3 ml-auto flex sm:mt-0">
         {props.tags?.split(',').map((tag: string, idx) => (
           <span key={idx}>
-            <a className="rounded-lg bg-gray-100 px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-blue-600">
-              {tag}
-            </a>
+            <Tag>{tag}</Tag>
           </span>
         ))}
       </div>
@@ -52,7 +50,7 @@ export default async function Writing() {
     <LandingLayout title="Writing" about="My thoughts">
       <div className="border-gray border-t text-fg">
         <ul>
-          {allPostsData.map((data: PostMetadata) => (
+          {allPostsData.map((data: WritingFrontmatter) => (
             <Post {...data} key={data.id} />
           ))}
         </ul>

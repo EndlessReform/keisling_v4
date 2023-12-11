@@ -6,7 +6,7 @@ import Image from 'next/image'
 import {
   getSortedPostsData,
   ReadingFrontmatter,
-  PostMetadata,
+  WritingFrontmatter,
 } from '../lib/get_posts'
 import { get_links } from '../lib/get_links'
 import { Hero } from '../components/Hero'
@@ -76,12 +76,12 @@ const ReviewContainer: React.FC<
 )
 
 const PostContainer: React.FC<
-  { posts: PostMetadata[] } & HTMLProps<HTMLDivElement>
+  { posts: WritingFrontmatter[] } & HTMLProps<HTMLDivElement>
 > = ({ posts, ...rest }) => {
   return (
     <div className="mb-6 w-full rounded-xl border-2 border-gray-100">
       {posts
-        ? posts.slice(0, 3).map((post: PostMetadata, idx: number) => (
+        ? posts.slice(0, 3).map((post: WritingFrontmatter, idx: number) => (
             <div
               key={idx}
               className="flex border-b-2 border-gray-100 p-2 last-of-type:border-none"
