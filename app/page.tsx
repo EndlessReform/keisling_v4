@@ -175,7 +175,7 @@ async function Home() {
               src={MeCutout}
               alt="Illustration of me"
               className="py-12"
-              height={192}
+              height={232}
             />
           </FTImageContainer>
         </FeatureContainer>

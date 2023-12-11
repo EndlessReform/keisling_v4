@@ -10,7 +10,7 @@ module.exports = {
     fontFamily: {
       sans: ['var(--font-mona)'],
       serif: ['var(--font-newsreader)'],
-      mono: ['Basier Circle Mono', 'Courier New'],
+      mono: ['var(--font-plex-mono)'],
     },
     colors: {
       'fg': '#231f20',
