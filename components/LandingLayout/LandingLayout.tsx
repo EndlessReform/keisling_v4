@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import Container from '../container/container'
+import { Container } from '../Container/'
 
 type LandingLayoutProps = {
   title: string

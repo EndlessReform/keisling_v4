@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
 
-import Container from '../../components/container/container'
+import { Container } from '../../components'
 
 import { LogoGithub, SendAlt } from '@carbon/icons-react'
 
@@ -10,7 +10,7 @@ type AboutProps = {
 }
 
 export const metadata: Metadata = {
-  title: 'About · Jacob Keisling',
+  title: 'About',
 }
 
 export default function AboutLayout({ children }: AboutProps) {

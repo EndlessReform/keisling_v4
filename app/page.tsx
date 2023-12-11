@@ -5,12 +5,12 @@ import Image from 'next/image'
 // Components
 import {
   getSortedPostsData,
-  ReviewMetadata,
+  ReadingFrontmatter,
   PostMetadata,
 } from '../lib/get_posts'
 import { get_links } from '../lib/get_links'
 import { Hero } from '../components/Hero'
-import Container from '../components/container/container'
+import { Container } from '../components'
 import ButtonLink from '../components/ButtonLink/button_link'
 
 import { ArrowRight, Calendar, LocationHeartFilled } from '@carbon/icons-react'
@@ -44,11 +44,11 @@ const FTImageContainer = (props: HTMLProps<HTMLDivElement>) => (
 )
 
 const ReviewContainer: React.FC<
-  { reviews: ReviewMetadata[] } & HTMLProps<HTMLDivElement>
+  { reviews: ReadingFrontmatter[] } & HTMLProps<HTMLDivElement>
 > = ({ reviews, ...rest }) => (
   <div className="mb-6 w-full rounded-xl border-2 border-gray-100">
     {reviews
-      ? reviews.slice(0, 3).map((review: ReviewMetadata, idx: number) => (
+      ? reviews.slice(0, 3).map((review: ReadingFrontmatter, idx: number) => (
           <div
             key={idx}
             className="flex border-b-2 border-gray-100 px-2 py-3 text-gray-800 last-of-type:border-none"

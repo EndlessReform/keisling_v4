@@ -5,6 +5,15 @@ import localFont from 'next/font/local'
 import { Header, Footer } from '../components'
 import './globals.css'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s  · Jacob Keisling',
+    default: 'Jacob Keisling', // a default is required when creating a template
+  },
+}
+
 const mona = localFont({
   src: [
     {

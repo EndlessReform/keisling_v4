@@ -3,7 +3,7 @@ import { readdir, readFile } from 'fs/promises'
 import path from 'path'
 import matter from 'gray-matter'
 
-export type ReviewMetadata = {
+export type ReadingFrontmatter = {
   id: string
   title: string
   written: string

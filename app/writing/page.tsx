@@ -1,4 +1,5 @@
 import { getSortedPostsData, PostMetadata } from '../../lib/get_posts'
+import { Metadata } from 'next'
 
 import Link from 'next/link'
 import { LandingLayout } from '../../components'
@@ -39,6 +40,10 @@ function Post(props: PostMetadata) {
       </div>
     </li>
   )
+}
+
+export const metadata: Metadata = {
+  title: 'Writing',
 }
 
 export default async function Writing() {

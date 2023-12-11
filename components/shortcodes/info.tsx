@@ -1,4 +1,3 @@
-import type { MDXComponents } from 'mdx/types'
 import clsx from 'clsx'
 import { HTMLProps } from 'react'
 
@@ -16,7 +15,7 @@ const H3List = (props: HTMLProps<HTMLHeadingElement>) => {
   )
 }
 
-const component_overrides = {
+export const infoShortcodes = {
   h1: (props: HTMLProps<HTMLHeadingElement>) => (
     <h1
       {...props}
@@ -37,7 +36,7 @@ const component_overrides = {
   ),
   h3: (props: HTMLProps<HTMLHeadingElement>) => <H3List {...props} />,
   p: (props: HTMLProps<HTMLParagraphElement>) => (
-    <p {...props} className="mb-4-lg max-w-2xl text-gray-500" />
+    <p {...props} className="mb-4 max-w-2xl text-lg text-gray-500" />
   ),
   strong: (props: HTMLProps<HTMLElement>) => (
     <strong {...props} className="font-medium text-fg" />
@@ -48,11 +47,4 @@ const component_overrides = {
   a: (props: HTMLProps<HTMLAnchorElement>) => (
     <a {...props} className="text-blue-600 hover:text-blue-700" />
   ),
-}
-
-export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return {
-    ...component_overrides,
-    ...components,
-  }
 }

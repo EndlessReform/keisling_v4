@@ -1,4 +1,5 @@
-import { getSortedPostsData, ReviewMetadata } from '../../lib/get_posts'
+import { Metadata } from 'next'
+import { getSortedPostsData, ReadingFrontmatter } from '../../lib/get_posts'
 
 import Link from 'next/link'
 import { Stars } from '../../components'
@@ -7,7 +8,7 @@ import { LandingLayout } from '../../components'
 // Assets
 import { ArrowRight } from '@carbon/icons-react'
 
-function Review(props: ReviewMetadata) {
+function Review(props: ReadingFrontmatter) {
   return (
     <li className="mt-4 block border-b border-gray-100 pb-4 sm:flex">
       <span className="ml-[-0.25rem] hidden pt-1 pr-2 text-fg sm:inline">
@@ -44,6 +45,11 @@ function Review(props: ReviewMetadata) {
   )
 }
 
+export const metadata: Metadata = {
+  title: 'Reading',
+  description: "Short notes on books I've read recently",
+}
+
 export default async function Reading() {
   const allPostsData = await getSortedPostsData('reading')
 
@@ -54,7 +60,7 @@ export default async function Reading() {
     >
       <div className="border-t border-gray-300 text-fg">
         <ul>
-          {allPostsData.map((data: ReviewMetadata) => (
+          {allPostsData.map((data: ReadingFrontmatter) => (
             <Review {...data} key={data.id} />
           ))}
         </ul>
