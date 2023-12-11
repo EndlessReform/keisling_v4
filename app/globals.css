@@ -3,13 +3,29 @@
 @tailwind utilities;
 
 @layer utilities {
-    .font-stretch-condensed {
-        font-stretch: 75%;
-    }
-    .font-stretch-semi-condensed {
-      font-stretch: 87.5%;
-    }
-    .font-stretch-expanded {
-      font-stretch: 125%;
-    }
+  .font-stretch-condensed {
+      font-stretch: 75%;
   }
+  .font-stretch-semi-condensed {
+    font-stretch: 87.5%;
+  }
+  .font-stretch-expanded {
+    font-stretch: 125%;
+  }
+
+  ul > li > .m-md-ul {
+    margin-bottom: 0px;
+  }
+  .m-md-ul {
+    margin-bottom: 0.75rem;
+  }
+  .about-sec-cntr {
+    content: counter(section) '. ';
+  }
+  .about-subsec-cntr {
+    content: counter(section) '.' counter(subsection) '. ';
+  }
+  .about-list-cntr {
+    content: counter(section) '.' counter(subsection) '.' counter(list) '. ';
+  }
+}
