@@ -10,8 +10,8 @@ import { ArrowRight } from '@carbon/icons-react'
 function Review(props: ReviewMetadata) {
   return (
     <li className="mt-4 block border-b border-gray-100 pb-4 sm:flex">
-      <span className="ml-[-0.25rem] hidden pt-1 pr-2 text-brand-500 sm:inline">
-        <ArrowRight className="h-6 w-6" />
+      <span className="ml-[-0.25rem] hidden pt-1 pr-2 text-fg sm:inline">
+        <ArrowRight className="mr-2 h-6 w-6" />
       </span>
       <div>
         <h3 className="text-2xl tracking-tight">
@@ -34,7 +34,7 @@ function Review(props: ReviewMetadata) {
       <div className="mt-3 ml-auto flex gap-2 sm:mt-0">
         {props.tags?.split(',').map((tag: string, idx) => (
           <span key={idx}>
-            <a className="rounded-lg bg-gray-100 px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-brand-500">
+            <a className="rounded-lg bg-gray-100 px-2 py-1 font-mono text-xs font-medium uppercase text-fg hover:text-blue-500">
               {tag}
             </a>
           </span>
