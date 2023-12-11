@@ -2,7 +2,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { getSortedPostsData, PostMetadata } from '../../lib/get_posts'
 
 import Link from 'next/link'
-import LandingLayout from '../../components/landing-layout/landing-layout'
+import { LandingLayout } from '../../components'
 
 // Assets
 import ArrowRight from '../../public/icons/arrow-right.svg'
@@ -10,7 +10,7 @@ import Calendar from '../../public/icons/calendar.svg'
 
 function Post(props: PostMetadata) {
   return (
-    <li className="border-gray-100 mt-4 block border-b pb-4 sm:flex">
+    <li className="mt-4 block border-b border-gray-100 pb-4 sm:flex">
       <span className="ml-[-0.25rem] hidden pt-1 pr-1 text-green sm:inline">
         <ArrowRight className="h-6 w-6" />
       </span>
@@ -23,8 +23,8 @@ function Post(props: PostMetadata) {
             {props.title}
           </Link>
         </h3>
-        <p className="max-w-xl text-sm text-gray">{props.summary}</p>
-        <div className="mt-3 flex items-center font-mono text-gray">
+        <p className="text-gray max-w-xl text-sm">{props.summary}</p>
+        <div className="text-gray mt-3 flex items-center font-mono">
           <span className="flex items-center text-xs ">
             <Calendar className="mr-2 h-3 w-3" /> {props.written}
           </span>
@@ -48,7 +48,7 @@ export default function Writing({
 }: InferGetStaticPropsType<GetStaticProps>) {
   return (
     <LandingLayout title="Writing" about="My thoughts">
-      <div className="border-t border-gray text-fg">
+      <div className="border-gray border-t text-fg">
         <ul>
           {allPostsData.map((data: PostMetadata) => (
             <Post {...data} key={data.id} />
