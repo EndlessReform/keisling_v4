@@ -29,7 +29,7 @@ const ButtonLink = (props: ButtonLinkProps) => {
             },
           }}
         >
-          <ArrowRight className="mr-1 h-5 w-5" />
+          <ArrowRight className="mr-2 h-5 w-5" />
         </motion.div>
         {props.display_name}
       </Link>

@@ -9,36 +9,26 @@ import {
   PostMetadata,
 } from '../lib/get_posts'
 import { get_links } from '../lib/get_links'
+import { Hero } from '../components/Hero'
 import Container from '../components/container/container'
 import ButtonLink from '../components/ButtonLink/button_link'
 
 import { ArrowRight, Calendar, LocationHeartFilled } from '@carbon/icons-react'
+import SpotIllustrationLiteracy from '../public/images/spot-illustration-literacy.png'
+import SpotIllustrationWriting from '../public/images/spot-illustration-writing.png'
+import SpotIllustrationMap from '../public/images/spot-illustration-map.png'
+import MeCutout from '../public/images/me-cutout.png'
 
 // Assets
 import { Stars } from '../components'
 //import PageHead from '../components/page-head/page-head'
 
-const Hero = () => {
-  return (
-    <div className="flex w-full flex-col items-center sm:flex-row ">
-      <div className="flex flex-col items-center sm:mr-auto sm:inline">
-        <h1 className="text-5xl font-medium tracking-tight text-brand-500">
-          Jacob Keisling
-        </h1>
-        <div className="mt-3 hidden items-center text-gray-400 sm:flex">
-          <LocationHeartFilled className="mr-3" />
-          <h4 className="text-2xl font-medium tracking-tight">Chicago, IL</h4>
-        </div>
-      </div>
-      <Image
-        width="128"
-        height="128"
-        src="/images/me.png"
-        alt="Jacob Keisling"
-      />
-    </div>
-  )
-}
+const SectionHeader = (props: HTMLProps<HTMLHeadingElement>) => (
+  <h2
+    className="font-stretch-expanded mt-6 mb-4 text-3xl font-medium text-gray-800"
+    {...props}
+  />
+)
 
 // Yes, I know, you could also do this with classes instead of components.
 // But it's my circus and my monkeys...
@@ -48,7 +38,7 @@ const FeatureContainer = (props: HTMLProps<HTMLDivElement>) => (
 
 const FTImageContainer = (props: HTMLProps<HTMLDivElement>) => (
   <div
-    className="flex min-h-[20rem] min-w-[20rem] items-center justify-around rounded-2xl bg-pink-light"
+    className="flex min-h-[20rem] min-w-[20rem] items-center justify-around rounded-2xl bg-gray-100 px-6 py-4"
     {...props}
   />
 )
@@ -61,17 +51,17 @@ const ReviewContainer: React.FC<
       ? reviews.slice(0, 3).map((review: ReviewMetadata, idx: number) => (
           <div
             key={idx}
-            className="flex border-b-2 border-gray-100 px-2 py-3 last-of-type:border-none"
+            className="flex border-b-2 border-gray-100 px-2 py-3 text-gray-800 last-of-type:border-none"
           >
-            <ArrowRight className="mt-[7px] mr-1 h-4 w-4 text-red" />
+            <ArrowRight className="mt-[7px] mr-2 h-4 w-4" />
             <div>
-              <h4 className="text-xl text-red hover:underline hover:underline-offset-4">
+              <h4 className="font-stretch-expanded text-xl font-light hover:underline hover:underline-offset-4">
                 <Link href={`/reading/${review.id.split('.')[0]}`}>
                   {review.title}
                 </Link>
               </h4>
-              <p className="text-sm text-fg">{review.author}</p>
-              <div className="text-gray mt-3 flex items-center font-mono">
+              <p className="text-sm text-gray-500">{review.author}</p>
+              <div className="mt-3 flex items-center font-mono text-gray-500">
                 <Stars n={review.stars || 0} />
                 <span className="ml-2 text-xs">
                   {' | '}
@@ -97,13 +87,13 @@ const PostContainer: React.FC<
               className="flex border-b-2 border-gray-100 p-2 last-of-type:border-none"
             >
               <div className="m-3">
-                <h4 className="text-xl text-green hover:underline hover:underline-offset-4">
+                <h4 className="font-stretch-expanded text-xl font-light hover:underline hover:underline-offset-4">
                   <Link href={`/writing/${post.id.split('.')[0]}`}>
                     {post.title}
                   </Link>
                 </h4>
-                <p className="text-gray text-sm">{post.summary}</p>
-                <div className="text-gray mt-3 flex items-center font-mono">
+                <p className="text-sm text-gray-500">{post.summary}</p>
+                <div className="mt-3 flex items-center font-mono text-gray-500">
                   <span className="flex items-center text-xs ">
                     <Calendar className="mr-2 h-3 w-3" /> {post.written}
                   </span>
@@ -128,9 +118,9 @@ const LinksContainer: React.FC<
               key={idx}
               className="flex border-b-2 border-gray-100 p-2 last-of-type:border-none"
             >
-              <ArrowRight className="mt-[7px] h-4 w-4 text-purple" />
+              <ArrowRight className="mt-[6px] h-4 w-4 text-blue-600" />
               <div className="ml-2">
-                <h4 className="text-xl text-purple hover:underline hover:underline-offset-4">
+                <h4 className="text-lg text-blue-600 hover:text-blue-800 hover:underline hover:underline-offset-4">
                   <a href={link.url}>{link.name}</a>
                 </h4>
                 {link.summary && (
@@ -152,43 +142,47 @@ async function Home() {
 
   return (
     <Container>
-      <main className="w-full">
+      <main className="w-full text-gray-800">
         <Hero />
         <FeatureContainer>
           <div className="border-t-2 border-gray-100">
             <Link href="/about">
-              <h2 className="my-6 text-4xl font-medium tracking-tight text-blue">
-                About
-              </h2>
+              <SectionHeader>Hello!</SectionHeader>
             </Link>
-            <p className="mb-6 text-lg text-gray-500">
-              <span className="font-medium text-fg">
-                You've found Jacob Keisling's personal website,
+            <p className="mb-6 max-w-md font-serif text-xl font-light leading-none text-gray-500">
+              <span className="text-md font-normal text-fg">
+                I'm Jacob, and you've found my personal website,
               </span>{' '}
-              for better or worse. I write about deep learning, front-end
-              development, hardware, progress studies, and East Asian history.
+              for better or worse. I write here about language models,
+              full-stack development, UX design, and whatever else I'm thinking
+              about.
             </p>
             <div className="flex">
               <ButtonLink
                 to="/about"
                 display_name="About me"
-                className="bg-blue text-bg"
+                className="border border-brand-500 text-brand-500 hover:border-brand-600 hover:text-brand-600"
               />
               <ButtonLink
                 to="https://www.linkedin.com/in/jacob-keisling-b474a7174/"
                 display_name="LinkedIn"
-                className="bg-pink-light text-blue"
+                className="border border-gray-500 text-gray-500 hover:border-gray-600 hover:text-gray-600"
               />
             </div>
           </div>
-          <FTImageContainer></FTImageContainer>
+          <FTImageContainer>
+            <Image
+              src={MeCutout}
+              alt="Illustration of me"
+              className="py-12"
+              height={192}
+            />
+          </FTImageContainer>
         </FeatureContainer>
         <FeatureContainer>
           <div className="border-t-2 border-gray-100">
-            <h2 className="my-6 text-4xl font-medium tracking-tight text-red">
-              Reading
-            </h2>
-            <p className="text-gray mb-6 text-lg">
+            <SectionHeader>Reading</SectionHeader>
+            <p className="mb-6 font-serif text-lg font-light text-gray-500">
               Brief thoughts on what I've been reading lately
             </p>
             <ReviewContainer reviews={readingPosts} />
@@ -198,17 +192,21 @@ async function Home() {
                 display_name={`${
                   readingPosts ? Math.max(0, readingPosts.length - 3) : 0
                 } more`}
-                className="bg-red text-bg"
+                className="border border-gray-500 text-gray-500 hover:border-gray-600 hover:text-gray-600"
               />
             </div>
           </div>
-          <FTImageContainer></FTImageContainer>
+          <FTImageContainer>
+            <Image
+              src={SpotIllustrationLiteracy}
+              alt="Illustration of reading"
+              className="rounded-[8rem]"
+            />
+          </FTImageContainer>
         </FeatureContainer>
         <FeatureContainer>
           <div className="border-t-2 border-gray-100">
-            <h2 className="my-6 text-4xl font-medium tracking-tight text-green">
-              Writing
-            </h2>
+            <SectionHeader>Writing</SectionHeader>
             <PostContainer posts={writingPosts} />
             <div className="flex">
               <ButtonLink
@@ -216,18 +214,22 @@ async function Home() {
                 display_name={`${
                   writingPosts ? Math.max(0, writingPosts.length - 3) : 0
                 } more`}
-                className="bg-green text-bg"
+                className="border border-gray-500 text-gray-500 hover:border-gray-600 hover:text-gray-600"
               />
             </div>
           </div>
-          <FTImageContainer></FTImageContainer>
+          <FTImageContainer>
+            <Image
+              src={SpotIllustrationWriting}
+              alt="Illustration of writing"
+              className="rounded-full"
+            />
+          </FTImageContainer>
         </FeatureContainer>
         <FeatureContainer>
           <div className="border-t-2 border-gray-100">
-            <h2 className="my-6 text-4xl font-medium tracking-tight text-purple">
-              Links
-            </h2>
-            <p className="text-gray mb-6 text-lg">
+            <SectionHeader>Links</SectionHeader>
+            <p className="text-gray mb-6 font-serif text-lg font-light text-gray-500">
               Interesting websites you might have missed
             </p>
             <LinksContainer linkObj={recommendedLinks} />
@@ -242,13 +244,17 @@ async function Home() {
                       )
                     : 0
                 } more`}
-                className="bg-purple text-bg"
+                className="border border-gray-500 text-gray-500 hover:border-gray-600 hover:text-gray-600"
               />
             </div>
           </div>
-          <div className="flex min-h-[20rem] w-full items-center justify-around overflow-hidden rounded-2xl bg-pink-light">
-            <div className="absolute z-20 mx-auto flex flex-col items-center"></div>
-          </div>
+          <FTImageContainer>
+            <Image
+              src={SpotIllustrationMap}
+              alt="Illustration of navigating a map"
+              className="rounded-full"
+            />
+          </FTImageContainer>
         </FeatureContainer>
       </main>
     </Container>

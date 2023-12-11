@@ -8,7 +8,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['Basier Circle', 'system-ui'],
+      sans: ['var(--font-mona)'],
       serif: ['var(--font-newsreader)'],
       mono: ['Basier Circle Mono', 'Courier New'],
     },
@@ -42,7 +42,18 @@ module.exports = {
         '900': "#7c3b0b",
         '950': "#381e00"
       },
-      'blue': '#1d64cc',
+      'blue': {
+        '100': '#efd5ff',
+        '200': '#d0e2ff',
+        '300': '#a6c8ff',
+        '400': '#78a9ff',
+        '500': '#4589ff',
+        '600': '#0f62fe',
+        '700': '#0043ce',
+        '800': '#002d9c',
+        '900': '#001d6c',
+        '950': '#001141',
+      },
       'green': '#377765',
       'orange': '#f49b7f',
       'purple': '#A89BE5',

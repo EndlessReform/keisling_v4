@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .font-stretch-condensed {
+        font-stretch: 75%;
+    }
+    .font-stretch-semi-condensed {
+      font-stretch: 87.5%;
+    }
+    .font-stretch-expanded {
+      font-stretch: 125%;
+    }
+  }
