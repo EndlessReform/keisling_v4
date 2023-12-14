@@ -146,9 +146,7 @@ async function Home() {
         <Hero />
         <FeatureContainer>
           <div className="border-t-2 border-gray-100">
-            <Link href="/about">
-              <SectionHeader>Hello!</SectionHeader>
-            </Link>
+            <SectionHeader>Hello!</SectionHeader>
             <p className="mb-6 max-w-md font-serif text-xl font-light leading-none text-gray-500">
               <span className="text-md font-normal text-fg">
                 I'm Jacob, and you've found my personal website,
