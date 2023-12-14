@@ -67,7 +67,7 @@ export function Links({
           {links[currCategory]?.map((l, key) => (
             <motion.div
               key={key}
-              className="border-b border-b-pink-light py-4 sm:flex"
+              className="border-b border-b-gray-100 py-4 sm:flex"
               animate={{ opacity: 1, y: 0 }}
               initial={{ opacity: 0, y: 20 }}
               exit={{ opacity: 0, y: -20 }}
