@@ -1,7 +1,7 @@
 {
   "private": true,
   "engines": {
-    "node": ">18",
+    "node": ">20",
     "yarn": "please-use-npm"
   },
   "scripts": {
@@ -30,14 +30,14 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^7.0.0",
-    "@types/carbon__icons-react": "^11.29.4",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^18.15.10",
     "@types/react": "19.0.8",
-    "autoprefixer": "^10.4.0",
     "postcss": "^8.4.21",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.2.5",
-    "tailwindcss": "^3.0.7",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5.7.3"
   },
   "overrides": {

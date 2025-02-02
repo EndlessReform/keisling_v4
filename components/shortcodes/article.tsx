@@ -46,7 +46,7 @@ export const articleShortcodes = {
     />
   ),
   code: (props: HTMLProps<HTMLElement>) => (
-    <code {...props} className="rounded bg-gray-100 p-1 text-xs" />
+    <code {...props} className="rounded-sm bg-gray-100 p-1 text-xs" />
   ),
   // TODO: Fix this bullshit
   img: (props: any) => {

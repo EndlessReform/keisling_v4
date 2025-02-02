@@ -15,7 +15,7 @@ export const Hero = () => {
         />
       </div>
       <div className="mt-8 mb-16 flex flex-col items-center justify-center">
-        <h1 className="font-stretch-expanded max-w-screen-md text-center text-2xl font-extralight leading-7 md:text-3xl lg:text-4xl lg:leading-none">
+        <h1 className="font-stretch-expanded max-w-(--breakpoint-md) text-center text-2xl font-extralight leading-7 md:text-3xl lg:text-4xl lg:leading-none">
           <span className="font-medium text-brand-500">Jacob Keisling</span>{' '}
           does ML engineering, front-end development, and design,{' '}
           <span className="italic">inter alia.</span>

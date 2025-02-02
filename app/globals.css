@@ -1,31 +1,52 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer utilities {
-  .font-stretch-condensed {
-      font-stretch: 75%;
-  }
-  .font-stretch-semi-condensed {
-    font-stretch: 87.5%;
-  }
-  .font-stretch-expanded {
-    font-stretch: 125%;
-  }
+@config '../tailwind.config.js';
 
-  ul > li > .m-md-ul {
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@utility font-stretch-condensed {
+  font-stretch: 75%;
+}
+
+@utility font-stretch-semi-condensed {
+  font-stretch: 87.5%;
+}
+
+@utility font-stretch-expanded {
+  font-stretch: 125%;
+}
+
+@utility m-md-ul {
+  ul > li > & {
     margin-bottom: 0px;
   }
-  .m-md-ul {
-    margin-bottom: 0.75rem;
-  }
-  .about-sec-cntr {
-    content: counter(section) '. ';
-  }
-  .about-subsec-cntr {
-    content: counter(section) '.' counter(subsection) '. ';
-  }
-  .about-list-cntr {
-    content: counter(section) '.' counter(subsection) '.' counter(list) '. ';
-  }
+  margin-bottom: 0.75rem;
+}
+
+@utility about-sec-cntr {
+  content: counter(section) '. ';
+}
+
+@utility about-subsec-cntr {
+  content: counter(section) '.' counter(subsection) '. ';
+}
+
+@utility about-list-cntr {
+  content: counter(section) '.' counter(subsection) '.' counter(list) '. ';
 }

@@ -60,7 +60,7 @@ const NavItem = (props: NavItemProps) => {
 export const Header = () => {
   return (
     <nav className="fixed z-30 w-full border-b border-bg bg-bg/90">
-      <div className="flex max-w-screen-lg items-center p-4 sm:px-8 lg:mx-auto">
+      <div className="flex max-w-(--breakpoint-lg) items-center p-4 sm:px-8 lg:mx-auto">
         <motion.div whileHover={{ rotate: '45deg' }}>
           <Link href="/" aria-label="Home">
             <Logo className={'h-8 w-8 text-brand-500 hover:text-brand-600'} />
