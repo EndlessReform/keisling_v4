@@ -11,20 +11,22 @@ import { Calendar, Tag as TagIcon } from '@carbon/icons-react'
 import { articleShortcodes, Container, Tag } from '../../../components'
 import { readFile } from 'fs/promises'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const metadata = await makeMetadata('writing', params.slug)
   return metadata
 }
 
-export default async function Article({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function Article(
+  props: {
+    params: Promise<{ slug: string }>
+  }
+) {
+  const params = await props.params;
   const fullPath = path.join(
     process.cwd(),
     'posts',

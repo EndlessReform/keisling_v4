@@ -11,20 +11,22 @@ import {
   makeMetadata,
 } from '../../../lib/get_posts'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string }>
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const metadata = await makeMetadata('reading', params.slug)
   return metadata
 }
 
-export default async function BookReview({
-  params,
-}: {
-  params: { slug: string }
-}) {
+export default async function BookReview(
+  props: {
+    params: Promise<{ slug: string }>
+  }
+) {
+  const params = await props.params;
   // God, this is so stupid
   const fullPath = makeFullPath('reading', params.slug)
   const source = await readFile(fullPath, 'utf-8')
